@@ -1,0 +1,212 @@
+[
+    {
+        "nombre":"caja",
+        "src":"./img/caja.png",
+        "tipo":"azul"
+    },
+    {
+        "nombre":"papel",
+        "src":"./img/papel.png",
+        "tipo":"azul"
+    },
+    {
+        "nombre":"papel de colores",
+        "src":"./img/papel de colores.png",
+        "tipo":"azul"
+    },
+    {
+        "nombre":"folleto",
+        "src":"./img/folleto.png",
+        "tipo":"azul"
+    },
+    {
+        "nombre":"periodico",
+        "src":"./img/periodico.png",
+        "tipo":"azul"
+    },
+    {
+        "nombre":"envase carton",
+        "src":"./img/envase carton.png",
+        "tipo":"azul"
+    },
+    {
+        "nombre":"envase de plastico agua",
+        "src":"./img/envase de plastico agua.png",
+        "tipo":"amarillo"
+    },
+    {
+        "nombre":"envase plastico comida",
+        "src":"./img/envase plastico comida.png",
+        "tipo":"amarillo"
+    },
+    {
+        "nombre":"bolsa plastico",
+        "src":"./img/bolsa plastico.png",
+        "tipo":"amarillo"
+    },
+    {
+        "nombre":"vasos plasticos",
+        "src":"./img/vasos plasticos.png",
+        "tipo":"amarillo"
+    },
+    {
+        "nombre":"manzana",
+        "src":"./img/manzana.png",
+        "tipo":"cafe"
+    },
+    {
+        "nombre":"espina pescado",
+        "src":"./img/espina pescado.png",
+        "tipo":"cafe"
+    },
+    {
+        "nombre":"cascara huevo",
+        "src":"./img/cascara huevo.png",
+        "tipo":"cafe"
+    },
+    {
+        "nombre":"servilleta",
+        "src":"./img/servilleta.png",
+        "tipo":"cafe"
+    },
+    {
+        "nombre":"bateria",
+        "src":"./img/bateria.png",
+        "tipo":"rojo"
+    },
+    {
+        "nombre":"pilas",
+        "src":"./img/pilas.png",
+        "tipo":"rojo"
+    },
+    {
+        "nombre":"aceite",
+        "src":"./img/aceite.png",
+        "tipo":"rojo"
+    },
+    {
+        "nombre":"medicamentos",
+        "src":"./img/medicamentos.png",
+        "tipo":"rojo"
+    },
+    {
+        "nombre":"medicamentos 2",
+        "src":"./img/medicamentos 2.png",
+        "tipo":"rojo"
+    },
+    {
+        "nombre":"lata de bebida",
+        "src":"./img/lata de bebida.png",
+        "tipo":"gris claro"
+    },
+    {
+        "nombre":"lata conserva",
+        "src":"./img/lata conserva.png",
+        "tipo":"gris claro"
+    },
+    {
+        "nombre":"lata de atun",
+        "src":"./img/lata de atun.png",
+        "tipo":"gris claro"
+    },
+    {
+        "nombre":"lata de cerveza",
+        "src":"./img/lata de cerveza.png",
+        "tipo":"gris claro"
+    },
+    {
+        "nombre":"botella de vidrio",
+        "src":"./img/botella de vidrio.png",
+        "tipo":"verde"
+    },
+    {
+        "nombre":"botella de vidrio bebida",
+        "src":"./img/botella de vidrio bebida.png",
+        "tipo":"verde"
+    },
+    {
+        "nombre":"envases de vidrio",
+        "src":"./img/envases de vidrio.png",
+        "tipo":"verde"
+    },
+    {
+        "nombre":"botella vino",
+        "src":"./img/botella vino.png",
+        "tipo":"verde"
+    },
+    {
+        "nombre":"tetrapack leche",
+        "src":"./img/tetrapack leche.png",
+        "tipo":"cafe claro"
+    },
+    {
+        "nombre":"tetrapack jugo",
+        "src":"./img/tetrapack jugo.png",
+        "tipo":"cafe claro"
+    },
+    {
+        "nombre":"tetrapack desconocido",
+        "src":"./img/tetrapack desconocido.png",
+        "tipo":"cafe claro"
+    },
+    {
+        "nombre":"tetrapack leche 2",
+        "src":"./img/tetrapack leche 2.png",
+        "tipo":"cafe claro"
+    },
+    {
+        "nombre":"parlante bluetooth",
+        "src":"./img/parlante bluetooth.png",
+        "tipo":"purpura"
+    },
+    {
+        "nombre":"laptop",
+        "src":"./img/laptop.png",
+        "tipo":"purpura"
+    },
+    {
+        "nombre":"teclado",
+        "src":"./img/teclado.png",
+        "tipo":"purpura"
+    },
+    {
+        "nombre":"celular",
+        "src":"./img/celular.png",
+        "tipo":"purpura"
+    },
+    {
+        "nombre":"ceramica",
+        "src":"./img/ceramica.png",
+        "tipo":"gris oscuro"
+    },
+    {
+        "nombre":"pañal",
+        "src":"./img/pañal.png",
+        "tipo":"gris oscuro"
+    },
+    {
+        "nombre":"colilla cigarro",
+        "src":"./img/colilla cigarro.png",
+        "tipo":"gris oscuro"
+    },
+    {
+        "nombre":"arena de mascota",
+        "src":"./img/arena de mascota.png",
+        "tipo":"gris oscuro"
+    },
+    {
+        "nombre":"pasta dental",
+        "src":"./img/pasta dental.png",
+        "tipo":"gris oscuro"
+    },
+    {
+        "nombre":"envoltorios",
+        "src":"./img/envoltorios.png",
+        "tipo":"gris oscuro"
+    },
+    {
+        "nombre":"mascarilla",
+        "src":"./img/mascarilla.png",
+        "tipo":"gris oscuro"
+    }
+]

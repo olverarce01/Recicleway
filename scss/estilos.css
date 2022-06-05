@@ -1,0 +1,57 @@
+.bg-primary {
+  background-color: #007070 !important; }
+
+.text-primary {
+  color: #ecdcdc !important; }
+
+.btn-primary {
+  background-color: #44cbab !important;
+  border-color: #25846e !important; }
+
+.btn-outline-success {
+  color: #007070;
+  border-color: #007070; }
+
+.btn-outline-success:hover {
+  color: #fff;
+  background-color: #44cbab;
+  border-color: #44cbab; }
+
+.logo {
+  height: 90px;
+  width: 190px; }
+
+.card {
+  background-color: #44cbab; }
+
+.main {
+  background-color: #007070; }
+
+.carousel-item {
+  background-color: #d6e58f; }
+
+.item {
+  margin: 50px 0;
+  color: #44cbab;
+  font-size: 50px; }
+
+.ejemplos {
+  background-color: #44cbab;
+  padding: 30px 20px;
+  margin: 20px 0;
+  border-radius: 20px;
+  color: #ecdcdc; }
+
+.formulario {
+  background-color: #d6e58f; }
+
+.main2 {
+  background-color: #007070; }
+
+.juego {
+  background-color: #44cbab; }
+
+body {
+  background-color: #007070; }
+
+/*# sourceMappingURL=estilos.css.map */

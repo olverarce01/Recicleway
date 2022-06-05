@@ -1,0 +1,134 @@
+//-----------------------------------
+//          PATRON DE COLORES
+//-----------------------------------
+
+//$texto: rgb(236, 220, 220);
+$texto: white;
+$principal: #007070;
+$secundario: #44cbab;
+// $terciario: rgb(214, 229, 143);
+$terciario:rgb(234, 253, 253);
+
+
+//----------------------------------------------
+//          ESTILOS SOBRE ESCRITOS DE BOOTSTRAP
+//----------------------------------------------
+
+.bg-primary{
+    background-color: $principal !important;
+}
+.text-primary {
+	color: $texto!important;
+}
+.btn-primary {
+	background-color:$secundario !important;
+	border-color: darken($secundario,20%) !important;
+}
+.btn-outline-success{
+    color: $principal;
+    border-color: $principal;
+}
+.btn-outline-success:hover{
+    color: $texto;
+    background-color:$secundario;
+    border-color:$secundario;
+}
+.nav-link:hover{
+    // margin-right: 5px;
+    background-color: $secundario;
+    // padding-bottom:8px;
+    border-bottom:4px;
+    border-bottom-color: $principal;
+    border-bottom-style:solid;
+    color: $principal!important;
+    font-weight: bold;
+    // margin:-1px;
+}
+.nav-item{
+    width: max-content;
+}
+.card-title{
+    font-size: xx-large;
+    text-align: center;
+    border-bottom: 4px solid $principal;
+}
+.card-body{
+    border-top: dotted 6px #243238;
+}
+.card-body:hover{
+    background: $terciario;
+    opacity: 0.8;
+}
+.card-text{
+    text-align: justify;
+    font-size: medium;
+}
+
+//----------------------------------------------
+//          ESTILOS PERSONALIZADOS
+//----------------------------------------------
+
+.logo{
+    height: 90px;
+    width: 190px;
+}
+.card{
+    background-color: $secundario;
+    border: 4px solid  #243238;
+}
+.main{
+    background-color: $principal;
+}
+.carousel-item
+{
+    background-color: $terciario;
+    opacity: 0.9;
+}
+
+.item{
+    margin: 50px 0;
+    color: $secundario;
+    font-size: 50px;
+}
+.ejemplos{
+    background-color: $secundario;
+    padding: 30px 20px;
+    margin: 20px 0;
+    border-radius: 20px;
+    color: $texto;
+}
+.formulario{
+    background-color: $terciario;
+}
+.main2{
+    background-color: $principal;
+    
+}
+.juego{
+    background-color: $secundario;
+}
+body{
+    background-color: $principal;
+}
+.borde-header{
+    border-bottom: 10px solid $secundario;
+    border-radius: 20px;
+}
+a{
+    color: $secundario;
+}
+.borde-footer{
+    border-top: 10px solid $secundario;
+    border-left: 10px solid $secundario;
+    border-right: 10px solid $secundario;
+    border-radius: 20px !important;
+    width: 100%;
+}
+
+.icono{
+    color: $secundario;
+    font-size: 15px;
+}
+// @media (min-width: 778px) and (max-width: 1080px){
+    
+// }

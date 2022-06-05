@@ -1,0 +1,47 @@
+[
+    {
+        "nombre":"contenedor azul",
+        "src":"./img/contenedor azul.png",
+        "tipo":"azul"
+    },
+    {
+        "nombre":"contenedor amarillo",
+        "src":"./img/contenedor amarillo.png",
+        "tipo":"amarillo"
+    },
+    {
+        "nombre":"contenedor cafe claro",
+        "src":"./img/contenedor cafe claro.png",
+        "tipo":"cafe claro"
+    },
+    {
+        "nombre":"contenedor cafe",
+        "src":"./img/contenedor cafe.png",
+        "tipo":"cafe"
+    },
+    {
+        "nombre":"contenedor gris claro",
+        "src":"./img/contenedor gris claro.png",
+        "tipo":"gris claro"
+    },
+    {
+        "nombre":"contenedor gris oscuro",
+        "src":"./img/contenedor gris oscuro.png",
+        "tipo":"gris oscuro"
+    },
+    {
+        "nombre":"contenedor purpura",
+        "src":"./img/contenedor purpura.png",
+        "tipo":"purpura"
+    },
+    {
+        "nombre":"contenedor rojo",
+        "src":"./img/contenedor rojo.png",
+        "tipo":"rojo"
+    },
+    {
+        "nombre":"contenedor verde",
+        "src":"./img/contenedor verde.png",
+        "tipo":"verde"
+    }
+]
