@@ -7,6 +7,7 @@
     <link Type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
     <link Type="text/css" rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="icon" href="favicon.ico">
 
     <title>Recycleway - Usuario </title>
 </head>
@@ -34,94 +35,120 @@
                         </li>
                    </ul>
               </div>
-              <div class="form-login">
-                <form class="form-inline my-1 mr-md-2 mt-sm-0">
-                    <div class="row">
-                      <div class="col">
-                              <i class="bi bi-file-earmark-person icono"></i>
-                              <input type="text" class="form-control my-1 w-md-25 w-sm-50" placeholder="Usuario">
-                              <i class="bi bi-lock-fill icono"></i>
-                              <input type="password" class="form-control my-1 w-md-25 w-sm-50" placeholder="Contraseña">
-                                  <button class="btn btn-outline-success my-1 mr-sm-2" type="submit">Acceder</button>
-                        </div>
-                  </div>
-                </form>
+              <div class="d-flex justify-content-between">
+                  <i class="bi bi-file-earmark-person icono"> Nombre de usuario</i>
+                  <button class="btn btn-outline-success my-1 mx-3">Cerrar sesión</button>
+
               </div>      
             </div>
         </nav>
       </header>
 
-      <h1 id="tituloInformacion" class="text-center">Elementos fallados en tu cuenta</h1>
+      <h1 id="tituloInformacion" class="text-center">Rendimiento en el juego</h1>
       <br><br>
 
-      <table class="table table-dark table-bordered">
+      <table class="table table-striped bg-info text-white text-center w-75 mx-auto">
         <thead>
-          <tr class="bg-warning">
+          <tr>
             <th scope="col">#</th>
             <th scope="col">Material</th>
-            <th scope="col">Contenedor elegido</th>
-            <th scope="col">Ultimo fallo</th>
-            <th scope="col">Veces falladas</th>
+            <th scope="col">Contenedor correspondiente</th>
+            <th scope="col">Porcentaje de fallo</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th scope="row">1</th>
+            <th scope="row"><img src="./img/caja.png" width="50" alt="caja"></th>
             <td>Caja</td>
-            <td>Contenedor verde</td>
-            <td>Hace 2 dias</td>
-            <td>5 veces</td>
+            <td scope="row"><img src="./img/contenedor azul.png" width="50" alt="contenedor azul"></td>
+            <td>0%</td>
+          </tr>
+
+          <tr>
+            <th scope="row"><img src="./img/bateria.png" width="50" alt="bateria"></th>
+            <td>Bateria</td>
+            <td scope="row"><img src="./img/contenedor rojo.png" width="50" alt="contenedor rojo"></td>
+            <td>98%</td>
+
           </tr>
           <tr>
-            <th scope="row">2</th>
+            <th scope="row"><img src="./img/pasta dental.png" width="50" alt="pasta dental"></th>
+            <td>Pasta dental</td>
+            <td scope="row"><img src="./img/contenedor gris oscuro.png" width="50" alt="contenedor gris oscuro"></td>
+            <td>76%</td>
+
+          </tr>
+          <tr>
+            <th scope="row"><img src="./img/teclado.png" width="50" alt="teclado"></th>
+            <td>Teclado</td>
+            <td scope="row"><img src="./img/contenedor purpura.png" width="50" alt="contenedor purpura"></td>
+            <td>85%</td>
+
+          </tr>
+
+
+          <tr>
+            <th scope="row"><img src="./img/botella de vidrio.png" width="50" alt="botella vidrio"></th>
             <td>Botella de vidrio</td>
-            <td>Contenedor azul</td>
-            <td>Hace 3 semanas</td>
-            <td>2 veces</td>
+            <td scope="row"><img src="./img/contenedor verde.png" width="50" alt="contenedor verde"></td>
+            <td>25%</td>
+          </tr>
+
+          <tr>
+            <th scope="row"><img src="./img/manzana.png" width="50" alt="manzana"></th>
+            <td>Manzana</td>
+            <td scope="row"><img src="./img/contenedor cafe.png" width="50" alt="contenedor cafe"></td>
+            <td>90%</td>
           </tr>
           <tr>
-            <th scope="row">3</th>
+            <th scope="row"><img src="./img/tetrapack leche.png" width="50" alt="tetrapack leche"></th>
             <td>Tetrapack de leche</td>
-            <td>Contenedor rojo</td>
-            <td>Hace 3 semanas</td>
-            <td>1 veces</td>
+            <td scope="row"><img src="./img/contenedor cafe claro.png" width="50" alt="contenedor cafe claro"></td>
+            <td>56%</td>
           </tr>
         </tbody>
       </table>
 
       <h1 id="tituloInformacion" class="text-center"> ¡Cuidado! </h1>
-      <p class= "lead" ><strong style="color:white"> Estos son los 4 materiales que mas se ha equivocado de contenedor: </strong></p>
-
-      <table class="table table-dark table-bordered">
+      <table class="table table-striped w-75 mx-auto bg-danger text-white text-center">
+         <p class= "lead mx-5" ><strong style="color:white"> Estos son los 4 materiales que mas se ha equivocado de contenedor: </strong></p>
         <thead>
-          <tr class="bg-danger">
+          <tr>
             <th scope="col">#</th>
             <th scope="col">Material</th>
             <th scope="col">Contenedor correcto</th>
+            <th scope="col">Porcentaje de fallo</th>
           </tr>
         </thead>
         <tbody>
-          <tr class=>
-            <th scope="row">1</th>
-            <td>Caja</td>
-            <td>Contenedor azul, se deposita todo tipo de papeles y cartones.</td>
-          </tr>
           <tr>
-            <th scope="row">2</th>
-            <td>Botella de vidrio</td>
-            <td>Contenedor verde, se depositan envases de vidrio.</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Tetrapack de leche</td>
-            <td>Contenedor cafe claro, se depositan restos de alimentos.</td>
-          </tr>
-          <tr>
-            <th scope="row">4</th>
-            <td>Vacio</td>
-            <td>Vacio</td>
+            <th scope="row"><img src="./img/bateria.png" width="50" alt="bateria"></th>
+            <td>Bateria</td>
+            <td scope="row"><img src="./img/contenedor rojo.png" width="50" alt="contenedor rojo"></td>
+            <td>98%</td>
 
           </tr>
+          <tr>
+            <th scope="row"><img src="./img/pasta dental.png" width="50" alt="pasta dental"></th>
+            <td>Pasta dental</td>
+            <td scope="row"><img src="./img/contenedor gris oscuro.png" width="50" alt="contenedor gris oscuro"></td>
+            <td>76%</td>
+
+          </tr>
+          <tr>
+            <th scope="row"><img src="./img/teclado.png" width="50" alt="teclado"></th>
+            <td>Teclado</td>
+            <td scope="row"><img src="./img/contenedor purpura.png" width="50" alt="contenedor purpura"></td>
+            <td>85%</td>
+
+          </tr>
+          <tr>
+            <th scope="row"><img src="./img/manzana.png" width="50" alt="manzana"></th>
+            <td>Manzana</td>
+            <td scope="row"><img src="./img/contenedor cafe.png" width="50" alt="contenedor cafe"></td>
+            <td>90%</td>
+          </tr>
+
         </tbody>
       </table>
 
