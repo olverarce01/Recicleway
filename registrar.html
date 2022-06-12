@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link Type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
-    <link Type="text/css" rel="stylesheet" href="css/estilos.css">
+    <!-- Estilos, css, bootstrap -->
+    <link Type="text/css" rel="stylesheet" href="./css/bootstrap.min.css">
+    <link Type="text/css" rel="stylesheet" href="./css/estilos.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="icon" href="favicon.ico">
-
-
+    <!-- Titulo de la pagina -->
     <title>Recycleway - Registrarse</title>
-</head>
-<body>
-
-  <header class="header pb-md-0 borde-header mb-2">
-    <nav class="navbar navbar-expand-md navbar-light bg-light rounded-lg">
+  </head>
+  <body>
+    <!-- Parte del Header, este contendra la barra de navegacion, al clickear el logo se devolvera a la pagina principal
+    Tendra 4 links de navegacion, "Jugar ahora", "Informacion", "Registrarse" y "Historial" donde se muestra si se inicio sesion
+    Tambien una seccion para que el usuario pueda ingresar a su cuenta -->
+    <header class="header pb-md-0 borde-header mb-2">
+      <nav class="navbar navbar-expand-md navbar-light bg-light rounded-lg">
+        <!-- Logo de la pagina -->
         <a class="navbar-brand" href="index.html" name="inicio"><img class="logo" src="./img/logobeta1.png" alt="logo de la pagina"></a>
+        <!-- Opcion que entrega otra barra de navegacion cuando si tenga una distancia de pantalla menor a la pagina -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+		      <span class="navbar-toggler-icon"></span>
         </button>
+        <!-- Contenido del div, donde involucra los links de navegacion -->
         <div class="navbar-collapse collapse show" id="navbarCollapse">
+          <!-- Lista no ordenada que contiene los links -->
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="juego.html">Jugar ahora <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="juego.html">Jugar ahora<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="informacion.html">Información</a>
@@ -34,106 +40,91 @@
               <a class="nav-link" href="historial.html">Historial</a>
             </li>
           </ul>
-          </div>
-
-
-          <div class="form-login">
-            <form class="form-inline my-1 mr-md-2 mt-sm-0">
-              <div class="row">
-                <div class="col">
-                  <i class="bi bi-file-earmark-person icono"></i>
-                  <input type="text" class="form-control my-1 w-md-25 w-sm-50" placeholder="Usuario">
-                  <i class="bi bi-lock-fill icono"></i>
-                  <input type="password" class="form-control my-1 w-md-25 w-sm-50" placeholder="Contraseña">
-                  <button class="btn btn-outline-success my-1 mr-sm-2" type="submit">Acceder</button>
-                </div>
+        </div>
+        <!-- Formulario para iniciar sesion -->
+        <div class="form-login">
+          <form class="form-inline my-1 mr-md-2 mt-sm-0">
+            <div class="row">
+              <div class="col">
+                <i class="bi bi-file-earmark-person icono"></i>
+                <input type="text" class="form-control my-1 w-md-25 w-sm-50" placeholder="Usuario">
+                <i class="bi bi-lock-fill icono"></i>
+                <input type="password" class="form-control my-1 w-md-25 w-sm-50" placeholder="Contraseña">
+                <button class="btn btn-outline-success my-1 mr-sm-2" type="submit">Acceder</button>
               </div>
-            </form>
-          </div>
-        </div>
-    </nav>
-  </header>
+            </div>
+          </form>
+        </div>      
+      </nav>
+    </header>
 
-
-
-
-
+    <!-- Contenido div main de registrar -->
     <div class="main" role="main">
-        <div class="formulario py-4 my-3 mx-2 px-4 rounded-lg">
-            <form>
-                <div class="form-row buscador">
-
-                  <div class="col-md-12 mb-3">
-                    <label for="validationServer01">Nombre</label>
-                    <input type="text" class="form-control is-valid w-50" id="validationServer01" placeholder="Nombre" value="" required>
-
-                    <div class="valid-feedback">
-                      Looks good!
-                    </div>
-                    
-                  </div>
-
-                  <div class="col-md-12 mb-3">
-                    <label for="validationServer02">Apellido</label>
-                    <input type="text" class="form-control is-valid w-50" id="validationServer02" placeholder="Apellido" value="" required>
-
-                    <div class="valid-feedback">
-                      Looks good!
-                    </div>
-                  </div>
-
-                </div>
-
-                <div class="form-row">
-
-                    <div class="col-md-12 mb-3">
-                      <label for="validationServer01">Correo</label>
-                      <input type="email" class="form-control is-valid w-50" id="validationServer01" placeholder="Correo" value="" required>
-  
-                      <div class="valid-feedback">
-                        Looks good!
-                      </div>
-                      
-                    </div>
-  
-                    <div class="col-md-12 mb-3">
-                      <label for="validationServer02">Contraseña</label>
-                      <input type="password" class="form-control is-valid w-50" id="validationServer02" placeholder="Contraseña" value="" required>
-  
-                      <div class="valid-feedback">
-                        Looks good!
-                      </div>
-                    </div>
-  
-                  </div>
-
-
-                <div class="form-group">
-                  <div class="form-check">
-                    <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback" required>
-                    <label class="form-check-label" for="invalidCheck3">
-                        Aceptar terminos y servicios
-                    </label>
-                    <div  id="invalidCheck3Feedback" class="invalid-feedback">
-                        Debe estar de acuerdo antes de enviar.
-                    </div>
-                  </div>
-                </div>
-                <button class="btn btn-primary" type="submit">Registrar</button>
-
-
-
-            </form>
-        </div>
+      <!-- Contenido div donde estara el formulario -->
+      <div class="formulario py-4 my-3 mx-2 px-4 rounded-lg">
+        <form>
+          <!-- filas de dos que tiene los inputs nombre y apellido -->
+          <div class="form-row buscador">
+            <div class="col-md-12 mb-3">
+              <label for="validationServer01">Nombre</label>
+              <input type="text" class="form-control is-valid w-50" id="validationServer01" placeholder="Nombre" value="" required>
+              <!-- Muestra de ejemplo cuando se completa el input -->
+              <div class="valid-feedback">
+              Se ve bien!
+              </div>
+            </div>
+            <div class="col-md-12 mb-3">
+              <label for="validationServer02">Apellido</label>
+              <input type="text" class="form-control is-valid w-50" id="validationServer02" placeholder="Apellido" value="" required>
+              <div class="valid-feedback">
+              Se ve bien!
+              </div>
+            </div>
+          </div>
+          <!-- Filas de dos donde contiene el input del correo y la contraseña-->
+          <div class="form-row">
+            <div class="col-md-12 mb-3">
+              <label for="validationServer01">Correo</label>
+              <input type="email" class="form-control is-valid w-50" id="validationServer01" placeholder="Correo" value="" required>
+              <div class="valid-feedback">
+              Se ve bien!
+              </div>  
+            </div>
+            <div class="col-md-12 mb-3">
+              <label for="validationServer02">Contraseña</label>
+              <input type="password" class="form-control is-valid w-50" id="validationServer02" placeholder="Contraseña" value="" required>
+              <div class="valid-feedback">
+              Se ve bien!
+              </div>
+            </div>
+          </div>
+          <!-- Clase contenedor div donde contiene el check input de aceptar terminos y condiciones, si no esta aceptado diria el mensaje "Debe estar de acuerod antes de enviar" -->
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback" required>
+              <label class="form-check-label" for="invalidCheck3">
+              Aceptar terminos y servicios
+              </label>
+              <div id="invalidCheck3Feedback" class="invalid-feedback">
+              Debe estar de acuerdo antes de enviar.
+              </div>
+            </div>
+          </div>
+          <!-- Boton para registrar el formulario -->
+          <button class="btn btn-primary" type="submit">Registrar</button>
+        </form>
+      </div>
     </div>
 
+    <!-- Parte del footer, pie de la pagina que contiene links para ir hacia arriba y a la pagina mas informacion -->
     <footer class="container bg-light rounded-lg py-2 px-5 borde-footer">
       <img class="logo" src="./img/logobeta1.png" alt="logo de la pagina">
       <p class="float-right"><a href="#inicio">Volver hacia arriba</a></p>
       <p>© 2022-2022 Company RecycleWay, Inc. · <a href="#">Informacion</a> · <a href="#">Terminos y condiciones</a></p>
     </footer>
-  <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-</body>
+    <!-- Scripts utilizados o que se van a utilizar a futuro-->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
 </html>

@@ -34,15 +34,12 @@ $terciario:rgb(234, 253, 253);
     border-color:$secundario;
 }
 .nav-link:hover{
-    // margin-right: 5px;
     background-color: $secundario;
-    // padding-bottom:8px;
     border-bottom:4px;
     border-bottom-color: $principal;
     border-bottom-style:solid;
     color: $principal!important;
     font-weight: bold;
-    // margin:-1px;
 }
 .nav-item{
     width: max-content;
