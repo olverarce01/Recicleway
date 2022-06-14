@@ -79,7 +79,7 @@ function removeActive(){
  	 });
  	 return elems
 }
-//Funcion para mostrar el nombre del arhivo actual en reproduccion
+//Funcion para mostrar el nombre del archivo actual en reproduccion
 function reproduccionActual(texto){
 	document.getElementById('currentPlay').innerText=texto
 }
