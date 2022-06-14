@@ -1,8 +1,11 @@
+/* Estilo general de la pagina de juego */
 *{
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 }
+
+/* Estilo del body del juego */
 body{ 
 	overflow-y: hidden;
 	overflow-x: hidden;
@@ -12,18 +15,23 @@ body{
 	background-position: 50% 0;
 }
 
+
 .fas{
 	cursor: pointer;
 }
 
+/* Estilo del reproductor */
 #reproductor{
 
 }
 
+/* Estilo del canvas */
 #canvas{
 	position: absolute;
 	border: 1px solid black;
 }
+
+/* Estilo del puntaje y mensaje */
 #puntaje,#mensaje{
 	font-size: 50px;
 	font-weight: bolder;
@@ -31,6 +39,8 @@ body{
 	padding: 0 50px;
 	margin: auto 0;
 }
+
+/* Estilo contenedor del juego */
 #contenedor{
 	display: flex;
 	flex-wrap: wrap;
@@ -39,6 +49,8 @@ body{
 	width: 100%;
 	z-index: 1;
 }
+
+/* Boton del juego */
 button{
 	font-size: 50px;
 	padding: 20px;
@@ -50,6 +62,8 @@ button{
 	border: none;
 	cursor: pointer;
 }
+
+/* Boton del juego tras seleccionar */
 button:hover{
 	background-color: lightsteelblue;
 }

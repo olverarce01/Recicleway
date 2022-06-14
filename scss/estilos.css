@@ -1,57 +1,118 @@
+/* Estilo fondo de la pagina principal, informacion, registrarse y historial */
 .bg-primary {
-  background-color: #007070 !important; }
+  background-color: #007070 !important;
+}
 
+/* Estilo de texto color blanco si se llama a text-primary */
 .text-primary {
-  color: #ecdcdc !important; }
+  color: #ecdcdc !important;
+}
 
+/* Estilo color primario del boton */
 .btn-primary {
   background-color: #44cbab !important;
-  border-color: #25846e !important; }
+  border-color: #25846e !important;
+}
 
+/* Estilo texto del color en el boton bootstrap success */
 .btn-outline-success {
   color: #007070;
-  border-color: #007070; }
+  border-color: #007070;
+}
 
+/* Estilo texto del color en el boton bootstrap success tras estar con el cursor */
 .btn-outline-success:hover {
   color: #fff;
   background-color: #44cbab;
-  border-color: #44cbab; }
+  border-color: #44cbab;
+}
 
+/* Estilo tamaño del logo */
 .logo {
   height: 90px;
-  width: 190px; }
+  width: 190px;
+}
 
+/* Estilo de la carta */
 .card {
-  background-color: #44cbab; }
+  background-color: #44cbab;
+}
 
+/* Fondo del main */
 .main {
-  background-color: #007070; }
+  background-color: #007070;
+}
 
+/* Estilo del color del carusel y su opacidad */
 .carousel-item {
-  background-color: #d6e58f; }
+  background-color: #d6e58f;
+}
 
+/* Estilo item en el texto de la informacion de los contenedores */
 .item {
   margin: 50px 0;
   color: #44cbab;
-  font-size: 50px; }
+  font-size: 50px;
+}
 
+/* Estilo del contenedor que agrupa los ejemplos de la informacion que basura hay que poner en los contenedores */
 .ejemplos {
   background-color: #44cbab;
   padding: 30px 20px;
   margin: 20px 0;
   border-radius: 20px;
-  color: #ecdcdc; }
+  color: #ecdcdc;
+}
 
+/* Estilo fondo de color del formulario */
 .formulario {
-  background-color: #d6e58f; }
+  background-color: #d6e58f;
+}
 
+/* Estilo main 2 */
 .main2 {
-  background-color: #007070; }
+  background-color: #007070;
+}
 
+/* no se si se utilizo */
 .juego {
-  background-color: #44cbab; }
+  background-color: #44cbab;
+}
 
+/* Estilo fondo de la pagina principal, informacion, registrarse y historial */
 body {
-  background-color: #007070; }
+  background-color: #007070;
+}
 
-/*# sourceMappingURL=estilos.css.map */
+/* Estilo para modificar el border del header */
+.borde-header {
+  border-bottom: 10px solid #44cbab;
+  border-radius: 20px;
+}
+  
+/* Estilo para el link  */
+a {
+  color: #44cbab;
+}
+  
+/* Estilo para modificar el border del footer */
+
+.borde-footer {
+  border-top: 10px solid #44cbab;
+  border-left: 10px solid #44cbab;
+  border-right: 10px solid #44cbab;
+  border-radius: 20px !important;
+  width: 100%;
+}
+  
+/* Estilo del icono */
+.icono {
+  color: #44cbab;
+  font-size: 15px;
+}
+  
+/* Estilo para algunos titulos en contenido main */
+#tituloInformacion{
+  color: white;
+  margin: auto 30px;
+}
