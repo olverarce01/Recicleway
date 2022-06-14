@@ -15,14 +15,9 @@ body{
 	background-position: 50% 0;
 }
 
-
+/* Estilo boton del reproductor */
 .fas{
 	cursor: pointer;
-}
-
-/* Estilo del reproductor */
-#reproductor{
-
 }
 
 /* Estilo del canvas */
@@ -50,7 +45,7 @@ body{
 	z-index: 1;
 }
 
-/* Boton del juego */
+/* Estilo boton del juego */
 button{
 	font-size: 50px;
 	padding: 20px;
@@ -63,7 +58,7 @@ button{
 	cursor: pointer;
 }
 
-/* Boton del juego tras seleccionar */
+/* Estilo boton del juego tras seleccionar */
 button:hover{
 	background-color: lightsteelblue;
 }
