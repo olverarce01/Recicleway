@@ -62,12 +62,12 @@
     <div class="main" role="main">
       <!-- Contenido div donde estara el formulario -->
       <div class="formulario py-4 my-3 mx-2 px-4 rounded-lg">
-        <form>
+        <form action="guardarregistro.php" method="post" enctype='multipart/form-data'>
           <!-- filas de dos que tiene los inputs nombre y apellido -->
           <div class="form-row buscador">
             <div class="col-md-12 mb-3">
               <label for="validationServer01">Nombre</label>
-              <input type="text" class="form-control is-valid w-50" id="validationServer01" placeholder="Nombre" value="" required>
+              <input type="text" class="form-control is-valid w-50" id="validationServer01" name="Nombre" placeholder="Nombre" value="" required>
               <!-- Muestra de ejemplo cuando se completa el input -->
               <div class="valid-feedback">
               Se ve bien!
@@ -75,7 +75,7 @@
             </div>
             <div class="col-md-12 mb-3">
               <label for="validationServer02">Apellido</label>
-              <input type="text" class="form-control is-valid w-50" id="validationServer02" placeholder="Apellido" value="" required>
+              <input type="text" class="form-control is-valid w-50" id="validationServer02" name="Apellido" placeholder="Apellido" value="" required>
               <div class="valid-feedback">
               Se ve bien!
               </div>
@@ -85,14 +85,14 @@
           <div class="form-row">
             <div class="col-md-12 mb-3">
               <label for="validationServer01">Correo</label>
-              <input type="email" class="form-control is-valid w-50" id="validationServer01" placeholder="Correo" value="" required>
+              <input type="email" class="form-control is-valid w-50" id="validationServer01" name="Correo" placeholder="Correo" value="" required>
               <div class="valid-feedback">
               Se ve bien!
               </div>  
             </div>
             <div class="col-md-12 mb-3">
               <label for="validationServer02">Contraseña</label>
-              <input type="password" class="form-control is-valid w-50" id="validationServer02" placeholder="Contraseña" value="" required>
+              <input type="password" class="form-control is-valid w-50" id="validationServer02"  name="Contraseña" placeholder="Contraseña" value="" required>
               <div class="valid-feedback">
               Se ve bien!
               </div>
