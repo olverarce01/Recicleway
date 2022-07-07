@@ -143,6 +143,9 @@ var heigh2=img2.height;
         }else{
             puntaje++;
             pPuntaje.textContent=`Puntaje: ${puntaje}`;
+            actualizarPuntajeMax(puntaje);
+            
+
             var vRandom=obtenerValorRandom(0,jsonElementos.length);
             elementos.push(new Elemento(window_width/2,140,50,50,jsonElementos[vRandom].src,jsonElementos[vRandom].tipo,1));   
         }          

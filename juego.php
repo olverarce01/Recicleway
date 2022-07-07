@@ -1,3 +1,23 @@
+<?php
+  session_start();
+
+  require 'conexion.php';
+
+  if (isset($_SESSION['user_id'])) {
+    $records = $conn->prepare('SELECT correo, puntajeMax FROM puntajes WHERE correo = :correo');
+    $records->bindParam(':correo', $_SESSION['user_id']);
+    $records->execute();
+    $results = $records->fetch(PDO::FETCH_ASSOC);
+
+    $user = null;
+
+    if (count($results) > 0) {
+      $user = $results;
+    }
+  }
+?>
+
+
 <!doctype html>
 <html>
 <head>
@@ -12,6 +32,9 @@
 </head>
 <!-- Declara que cuando mantenemos presionado el click primario, podemos subir o bajar el volumen mediante el movimiento del mouse -->
 <body onkeydown="move(event)">
+
+ 
+
     <div id="contenedor">
         <!-- Puntaje del jugador, perdera puntos si el elemento a poner en contenedor choca con los elementos flotantes -->
         <p id="puntaje">Puntaje: 0</p> 
@@ -45,12 +68,45 @@
             </div>
         </div>
         <button id="jugar">Jugar</button>
+         <?php if(!empty($user)): ?>
+            <br> Welcome. <?= $user['correo']; ?>
+        <?php else:?>
+            <br> Debes iniciar sesion
+        <?php endif; ?>
     </div>
     <!-- Parte del videojuego, se enfoca en canvas -->
     <canvas id="canvas"></canvas>
 
     <!-- Scripts utilizados en el videojuego-->
     <script src="./js/reproductor.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        var correo="<?=$user['correo']?>";
+        var puntajeMaxT=<?=$user['puntajeMax']?>;
+        
+        function actualizarPuntajeMax(puntajeMax){
+            
+        if(puntajeMaxT<puntajeMax){
+
+
+            $.post('actualizarPuntaje.php',{correo: correo, puntajeMax:puntajeMax});
+
+            //fetch('actualizarPuntaje.php',{
+              //  method: 'POST',
+                //body: jsonPuntaje,
+                //headers: {
+                 //   "content-type": "application/json; charset=UTF-8"
+                //}
+            //})
+
+            //peticion_http=new XMLHttpRequest();
+            //peticion_http.open('POST','actualizarPuntaje.php',true);
+            //peticion_http.setRequestHeader('Content-type','application/json; charset=utf-8');
+            //peticion_http.send(jsonPuntaje);     
+        }
+        }
+    </script>
     <script src="./js/funciones.js"></script>
     <script src="./js/juego.js"></script>
 </body>

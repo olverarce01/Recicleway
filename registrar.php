@@ -1,3 +1,34 @@
+<?php
+
+  require 'conexion.php';
+
+  $message = '';
+
+  if (!empty($_POST['correo']) && !empty($_POST['contrasena'])) {
+    $sql = "INSERT INTO usuarios (nombre,apellido,correo,contrasena) VALUES (:nombre, :apellido,:correo,:contrasena)";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':nombre', $_POST['nombre']);
+    $stmt->bindParam(':apellido', $_POST['apellido']);
+    $stmt->bindParam(':correo', $_POST['correo']);
+   // $contrasena = password_hash(, PASSWORD_BCRYPT);
+    $stmt->bindParam(':contrasena', $_POST['contrasena']);
+
+    if ($stmt->execute()) {
+      $message = 'Successfully created new user';
+    } else {
+      $message = 'Sorry there must have been an issue creating your account';
+    }
+
+    $sql = "INSERT INTO puntajes (correo,puntajeMax) VALUES (:correo, :puntajeMax)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':correo', $_POST['correo']);
+    $puntajeMax=0;
+    $stmt->bindParam(':puntajeMax', $puntajeMax);
+    $stmt->execute();
+
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,13 +43,19 @@
     <title>Recycleway - Registrarse</title>
   </head>
   <body>
+
+    <?php if(!empty($message)): ?>
+      <p> <?= $message ?></p>
+    <?php endif; ?>
+
+
     <!-- Parte del Header, este contendra la barra de navegacion, al clickear el logo se devolvera a la pagina principal
     Tendra 4 links de navegacion, "Jugar ahora", "Informacion", "Registrarse" y "Historial" donde se muestra si se inicio sesion
     Tambien una seccion para que el usuario pueda ingresar a su cuenta -->
     <header class="header pb-md-0 borde-header mb-2">
       <nav class="navbar navbar-expand-md navbar-light bg-light rounded-lg">
         <!-- Logo de la pagina -->
-        <a class="navbar-brand" href="index.html" name="inicio"><img class="logo" src="./img/logobeta1.png" alt="logo de la pagina"></a>
+        <a class="navbar-brand" href="index.php" name="inicio"><img class="logo" src="./img/logobeta1.png" alt="logo de la pagina"></a>
         <!-- Opcion que entrega otra barra de navegacion cuando si tenga una distancia de pantalla menor a la pagina -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
 		      <span class="navbar-toggler-icon"></span>
@@ -28,33 +65,19 @@
           <!-- Lista no ordenada que contiene los links -->
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="juego.html">Jugar ahora<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="juego.php">Jugar ahora<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="informacion.html">Información</a>
+              <a class="nav-link" href="informacion.php">Información</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="registrar.html">Registrate</a>
+              <a class="nav-link" href="registrar.php">Registrate</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="historial.html">Historial</a>
+              <a class="nav-link" href="historial.php">Historial</a>
             </li>
           </ul>
-        </div>
-        <!-- Formulario para iniciar sesion -->
-        <div class="form-login">
-          <form class="form-inline my-1 mr-md-2 mt-sm-0">
-            <div class="row">
-              <div class="col">
-                <i class="bi bi-file-earmark-person icono"></i>
-                <input type="text" class="form-control my-1 w-md-25 w-sm-50" placeholder="Usuario">
-                <i class="bi bi-lock-fill icono"></i>
-                <input type="password" class="form-control my-1 w-md-25 w-sm-50" placeholder="Contraseña">
-                <button class="btn btn-outline-success my-1 mr-sm-2" type="submit">Acceder</button>
-              </div>
-            </div>
-          </form>
-        </div>      
+        </div>     
       </nav>
     </header>
 
@@ -62,12 +85,12 @@
     <div class="main" role="main">
       <!-- Contenido div donde estara el formulario -->
       <div class="formulario py-4 my-3 mx-2 px-4 rounded-lg">
-        <form>
+        <form action="registrar.php" method="post">
           <!-- filas de dos que tiene los inputs nombre y apellido -->
           <div class="form-row buscador">
             <div class="col-md-12 mb-3">
               <label for="validationServer01">Nombre</label>
-              <input type="text" class="form-control is-valid w-50" id="validationServer01" placeholder="Nombre" value="" required>
+              <input type="text" class="form-control is-valid w-50" id="validationServer01" placeholder="Nombre" value="" name="nombre" required>
               <!-- Muestra de ejemplo cuando se completa el input -->
               <div class="valid-feedback">
               Se ve bien!
@@ -75,7 +98,7 @@
             </div>
             <div class="col-md-12 mb-3">
               <label for="validationServer02">Apellido</label>
-              <input type="text" class="form-control is-valid w-50" id="validationServer02" placeholder="Apellido" value="" required>
+              <input type="text" class="form-control is-valid w-50" id="validationServer02" placeholder="Apellido" value="" name="apellido" required>
               <div class="valid-feedback">
               Se ve bien!
               </div>
@@ -85,14 +108,14 @@
           <div class="form-row">
             <div class="col-md-12 mb-3">
               <label for="validationServer01">Correo</label>
-              <input type="email" class="form-control is-valid w-50" id="validationServer01" placeholder="Correo" value="" required>
+              <input type="email" class="form-control is-valid w-50" id="validationServer01" placeholder="Correo" value="" name="correo" required>
               <div class="valid-feedback">
               Se ve bien!
               </div>  
             </div>
             <div class="col-md-12 mb-3">
               <label for="validationServer02">Contraseña</label>
-              <input type="password" class="form-control is-valid w-50" id="validationServer02" placeholder="Contraseña" value="" required>
+              <input type="password" class="form-control is-valid w-50" id="validationServer02" placeholder="Contraseña" value="" name="contrasena" required>
               <div class="valid-feedback">
               Se ve bien!
               </div>

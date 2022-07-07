@@ -1,3 +1,39 @@
+<?php
+
+  session_start();
+
+  
+  require 'conexion.php';
+
+  if (!empty($_POST['correo']) && !empty($_POST['contrasena'])) {
+    $records = $conn->prepare('SELECT correo, contrasena FROM usuarios WHERE correo = :correo');
+    $records->bindParam(':correo', $_POST['correo']);
+    $records->execute();
+    $results = $records->fetch(PDO::FETCH_ASSOC);
+
+    $message = '';
+
+    if (count($results) > 0 && $_POST['contrasena']==$results['contrasena']) {
+      $_SESSION['user_id'] = $results['correo'];
+    } else {
+      $message = 'Sorry, those credentials do not match';
+    }
+  }
+ if (isset($_SESSION['user_id'])) {
+    $records = $conn->prepare('SELECT correo, contrasena FROM usuarios WHERE correo = :correo');
+    $records->bindParam(':correo', $_SESSION['user_id']);
+    $records->execute();
+    $results = $records->fetch(PDO::FETCH_ASSOC);
+
+    $user = null;
+
+    if (count($results) > 0) {
+      $user = $results;
+    }
+  }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,13 +48,17 @@
     <title>Recycleway - Informacion de contenedores</title>
   </head>
   <body>
+
+    <?php if(!empty($message)): ?>
+    <p> <?= $message ?></p>
+    <?php endif; ?>
     <!-- Parte del Header, este contendra la barra de navegacion, al clickear el logo se devolvera a la pagina principal
     Tendra 4 links de navegacion, "Jugar ahora", "Informacion", "Registrarse" y "Historial" donde se muestra si se inicio sesion
     Tambien una seccion para que el usuario pueda ingresar a su cuenta -->
     <header class="header pb-md-0 borde-header mb-2">
       <nav class="navbar navbar-expand-md navbar-light bg-light rounded-lg">
         <!-- Logo de la pagina -->
-        <a class="navbar-brand" href="index.html" name="inicio"><img class="logo" src="./img/logobeta1.png" alt="logo de la pagina"></a>
+        <a class="navbar-brand" href="index.php" name="inicio"><img class="logo" src="./img/logobeta1.png" alt="logo de la pagina"></a>
         <!-- Opcion que entrega otra barra de navegacion cuando si tenga una distancia de pantalla menor a la pagina -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
 		      <span class="navbar-toggler-icon"></span>
@@ -28,33 +68,41 @@
           <!-- Lista no ordenada que contiene los links -->
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="juego.html">Jugar ahora<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="juego.php">Jugar ahora<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="informacion.html">Información</a>
+              <a class="nav-link" href="informacion.php">Información</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="registrar.html">Registrate</a>
+              <a class="nav-link" href="registrar.php">Registrate</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="historial.html">Historial</a>
+              <a class="nav-link" href="historial.php">Historial</a>
             </li>
           </ul>
         </div>
         <!-- Formulario para iniciar sesion -->
+        <?php if (!isset($_SESSION['user_id'])): ?>
         <div class="form-login">
-          <form class="form-inline my-1 mr-md-2 mt-sm-0">
+          <form class="form-inline my-1 mr-md-2 mt-sm-0" action="informacion.php" method="post">
             <div class="row">
               <div class="col">
                 <i class="bi bi-file-earmark-person icono"></i>
-                <input type="text" class="form-control my-1 w-md-25 w-sm-50" placeholder="Usuario">
+                <input type="email" class="form-control my-1 w-md-25 w-sm-50" placeholder="Correo" name="correo">
                 <i class="bi bi-lock-fill icono"></i>
-                <input type="password" class="form-control my-1 w-md-25 w-sm-50" placeholder="Contraseña">
+                <input type="password" class="form-control my-1 w-md-25 w-sm-50" placeholder="Contraseña" name="contrasena">
                 <button class="btn btn-outline-success my-1 mr-sm-2" type="submit">Acceder</button>
               </div>
             </div>
           </form>
-        </div>      
+        </div>   
+        <?php else:?>
+             <br> Welcome. <?= $user['correo']; ?>
+            <br>You are Successfully Logged In
+            <a href="cerrarSesion.php">
+            Logout
+            </a>
+        <?php endif; ?>   
       </nav>
     </header>
 

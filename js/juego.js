@@ -1,15 +1,14 @@
 var jugando=true;
 var pPuntaje=document.getElementById('puntaje');
 var puntaje=0;
+var puntajeMax=0;
 var btnJugar=document.getElementById('jugar');
 btnJugar.onclick=function(){
-    if(!jugando){
         jugando=true;
         elementos=[];
         var vRandom=obtenerValorRandom(0,jsonElementos.length);
         elementos.push(new Elemento(window_width/2,140,50,50,jsonElementos[vRandom].src,jsonElementos[vRandom].tipo,1));
         game();
-    }
 }
 
 
@@ -48,10 +47,11 @@ function move(event){
             el.ypos=window_height-150;
         }  
     }
+    
 }
 peticion_http=new XMLHttpRequest();
 peticion_http.onreadystatechange=agregarContenedores;
-peticion_http.open('GET','contenedores.json',true);
+peticion_http.open('GET','contenedores.json',false);
 peticion_http.send(null);
 
 function agregarContenedores(){
@@ -71,7 +71,7 @@ function agregarContenedores(){
 }
 peticion_http2=new XMLHttpRequest();
 peticion_http2.onreadystatechange=agregarElementos;
-peticion_http2.open('GET','elementos.json',true);
+peticion_http2.open('GET','elementos.json',false);
 peticion_http2.send(null);
 
 function agregarElementos(){
@@ -126,4 +126,3 @@ function game(){
     }
 
 }
-game();
