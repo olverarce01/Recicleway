@@ -37,7 +37,7 @@
 
     <div id="contenedor">
         <!-- Puntaje del jugador, perdera puntos si el elemento a poner en contenedor choca con los elementos flotantes -->
-        <p id="puntaje">Puntaje: 0</p> 
+        <p id="puntaje">Puntaje: - /<?=$user['puntajeMax']?></p> 
         <!-- Contenedor div del reproductor-->
         <div id="reproductor">
             <!-- Proporciona informacion en el navegador para cambiar de musica cuando el jugador da click en los botones del reproductor -->
@@ -88,10 +88,8 @@
         function actualizarPuntajeMax(puntajeMax){
             
         if(puntajeMaxT<puntajeMax){
-
-
+            puntajeMaxT=puntajeMax;
             $.post('actualizarPuntaje.php',{correo: correo, puntajeMax:puntajeMax});
-
             //fetch('actualizarPuntaje.php',{
               //  method: 'POST',
                 //body: jsonPuntaje,

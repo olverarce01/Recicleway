@@ -135,15 +135,15 @@ var heigh2=img2.height;
 
         elementos.pop();
         if(img1.tipo != img2.tipo){
-
         puntaje=0;
-        pPuntaje.textContent=`Puntaje: ${puntaje}`;
+        pPuntaje.textContent=`Puntaje: ${puntaje} / ${puntajeMaxT}`;
         jugando=false;
         return true;    
         }else{
+
             puntaje++;
-            pPuntaje.textContent=`Puntaje: ${puntaje}`;
             actualizarPuntajeMax(puntaje);
+            pPuntaje.textContent=`Puntaje: ${puntaje} / ${puntajeMaxT}`;
             
 
             var vRandom=obtenerValorRandom(0,jsonElementos.length);
@@ -168,8 +168,11 @@ var heigh2=img2.height;
         ypos1<ypos2+heigh2 &&
         ypos1+height1>ypos2){
 
+        if(puntaje>0){
         puntaje--;
-        pPuntaje.textContent=`Puntaje: ${puntaje}`;
+        pPuntaje.textContent=`Puntaje: ${puntaje} / ${puntajeMaxT}`;
+        
+        }
         enemigos.push(new Enemigo(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcEnemigos[obtenerValorRandom(0,srcEnemigos.length)]));
         return true;
     }

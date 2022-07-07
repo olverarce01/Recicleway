@@ -18,7 +18,7 @@ var contenedores=[];
 
 var srcEnemigos=['./img/basura en mar.png','./img/calentamiento global.png','./img/co2.png','./img/reloj.png'];
 var enemigos=[];
-var nEnemigos=5;
+var nEnemigos=3;
 var sacarEnemigo=false;
 var enemigoASacar;
 
@@ -87,7 +87,7 @@ function agregarElementos(){
     }
 }
 var instrucciones=new Img(window_width-400,window_height/2,400,200,'./img/botones.png');
-for (let i=0;i<5 ; i++) {
+for (let i=0;i<nEnemigos ; i++) {
     enemigos.push(new Enemigo(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcEnemigos[obtenerValorRandom(0,srcEnemigos.length)]));
 }
 
