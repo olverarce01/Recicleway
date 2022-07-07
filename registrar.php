@@ -86,11 +86,13 @@
       <!-- Contenido div donde estara el formulario -->
       <div class="formulario py-4 my-3 mx-2 px-4 rounded-lg">
         <form action="registrar.php" method="post">
+
           <!-- filas de dos que tiene los inputs nombre y apellido -->
           <div class="form-row buscador">
             <div class="col-md-12 mb-3">
               <label for="validationServer01">Nombre</label>
               <input type="text" class="form-control is-valid w-50" id="validationServer01" placeholder="Nombre" value="" name="nombre" required>
+
               <!-- Muestra de ejemplo cuando se completa el input -->
               <div class="valid-feedback">
               Se ve bien!
@@ -99,6 +101,7 @@
             <div class="col-md-12 mb-3">
               <label for="validationServer02">Apellido</label>
               <input type="text" class="form-control is-valid w-50" id="validationServer02" placeholder="Apellido" value="" name="apellido" required>
+
               <div class="valid-feedback">
               Se ve bien!
               </div>
@@ -115,6 +118,7 @@
             </div>
             <div class="col-md-12 mb-3">
               <label for="validationServer02">Contraseña</label>
+
               <input type="password" class="form-control is-valid w-50" id="validationServer02" placeholder="Contraseña" value="" name="contrasena" required>
               <div class="valid-feedback">
               Se ve bien!
