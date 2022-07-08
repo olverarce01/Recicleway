@@ -1,5 +1,7 @@
 var jugando=true;
 var pPuntaje=document.getElementById('puntaje');
+var pComentarios=document.getElementById('comentarios');
+
 var puntaje=0;
 var puntajeMax=0;
 var btnJugar=document.getElementById('jugar');
@@ -7,7 +9,8 @@ btnJugar.onclick=function(){
         jugando=true;
         elementos=[];
         var vRandom=obtenerValorRandom(0,jsonElementos.length);
-        elementos.push(new Elemento(window_width/2,140,50,50,jsonElementos[vRandom].src,jsonElementos[vRandom].tipo,1));
+        elementos.push(new Elemento(window_width/2,140,50,50,jsonElementos[vRandom].src,jsonElementos[vRandom].tipo,1,jsonElementos[vRandom].nombre));
+        sumarFrecuencia(jsonElementos[vRandom].nombre);
         game();
 }
 
@@ -63,7 +66,7 @@ function agregarContenedores(){
             var espacio=0;
             for(el of dataParsed){
                 
-                contenedores.push(new Contenedor(espacio,window_height-100,100,100,el.src,el.tipo));
+                contenedores.push(new Contenedor(espacio,window_height-100,100,100,el.src,el.tipo,el.nombre));
                 espacio+=window_width/dataParsed.length;
             }
         }
@@ -82,7 +85,8 @@ function agregarElementos(){
             jsonElementos=dataParsed;
             
             var vRandom=obtenerValorRandom(0,jsonElementos.length-1);
-            elementos.push(new Elemento(window_width/2,140,50,50,jsonElementos[vRandom].src,jsonElementos[vRandom].tipo,1));
+            elementos.push(new Elemento(window_width/2,140,50,50,jsonElementos[vRandom].src,jsonElementos[vRandom].tipo,1,jsonElementos[vRandom].nombre));
+            sumarFrecuencia(jsonElementos[vRandom].nombre);
         }
     }
 }

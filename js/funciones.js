@@ -13,7 +13,7 @@ class Img{
     }
 }
 class Contenedor{
-    constructor(xpos,ypos,width,height,src, tipo){
+    constructor(xpos,ypos,width,height,src, tipo,nombre){
     this.xpos=xpos;
     this.ypos=ypos;
     this.width=width;
@@ -21,13 +21,14 @@ class Contenedor{
     this.img=new Image();
     this.img.src=src;
     this.tipo=tipo;
+    this.nombre=nombre;
     }
     draw(context){
         context.drawImage(this.img,this.xpos,this.ypos,this.width,this.height);
     }
 }
 class Elemento{
-    constructor(xpos,ypos,width,height,src,tipo,dy){
+    constructor(xpos,ypos,width,height,src,tipo,dy,nombre){
     this.xpos=xpos;
     this.ypos=ypos;
     this.width=width;
@@ -36,6 +37,7 @@ class Elemento{
     this.img.src=src;
     this.dy=dy;
     this.tipo=tipo;
+    this.nombre=nombre;
 
     //this.llama=new Image();
     //this.llama.src='./img/frames/0.gif';
@@ -137,17 +139,26 @@ var heigh2=img2.height;
         if(img1.tipo != img2.tipo){
         puntaje=0;
         pPuntaje.textContent=`Puntaje: ${puntaje} / ${puntajeMaxT}`;
+        
+
+        for(co of contenedores){
+        if(co.tipo==img1.tipo){
+        pComentarios.textContent=`comentarios: El residuo ${img1.nombre} no va en ${img2.nombre}. Debe ir en ${co.nombre}`;
+        }
+        }
+        sumarFallo(img1.nombre);
         jugando=false;
         return true;    
+        
         }else{
-
             puntaje++;
             actualizarPuntajeMax(puntaje);
             pPuntaje.textContent=`Puntaje: ${puntaje} / ${puntajeMaxT}`;
             
 
             var vRandom=obtenerValorRandom(0,jsonElementos.length);
-            elementos.push(new Elemento(window_width/2,140,50,50,jsonElementos[vRandom].src,jsonElementos[vRandom].tipo,1));   
+            elementos.push(new Elemento(window_width/2,140,50,50,jsonElementos[vRandom].src,jsonElementos[vRandom].tipo,1,jsonElementos[vRandom].nombre));
+            sumarFrecuencia(jsonElementos[vRandom].nombre);   
         }          
     }
     return false;
@@ -185,4 +196,5 @@ function alertaPerder(ctx){
     ctx.font = "60px monospace";
     ctx.textAlign = "center";
     ctx.fillText("Perdiste",window_width/2,window_height/2);
+
 }

@@ -38,6 +38,7 @@
     <div id="contenedor">
         <!-- Puntaje del jugador, perdera puntos si el elemento a poner en contenedor choca con los elementos flotantes -->
         <p id="puntaje">Puntaje: - /<?=$user['puntajeMax']?></p> 
+        <p id="comentarios">comentarios: -</p> 
         <!-- Contenedor div del reproductor-->
         <div id="reproductor">
             <!-- Proporciona informacion en el navegador para cambiar de musica cuando el jugador da click en los botones del reproductor -->
@@ -103,6 +104,13 @@
             //peticion_http.setRequestHeader('Content-type','application/json; charset=utf-8');
             //peticion_http.send(jsonPuntaje);     
         }
+        }
+
+        function sumarFallo(nombreMaterial){
+            $.post('sumarFallo.php',{correo: correo, nombreMaterial:nombreMaterial});
+        }
+        function sumarFrecuencia(nombreMaterial){
+            $.post('sumarFrecuencia.php',{correo: correo, nombreMaterial:nombreMaterial});
         }
     </script>
     <script src="./js/funciones.js"></script>

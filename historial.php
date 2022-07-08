@@ -31,6 +31,7 @@
       $user = $results;
     }
   }
+
 ?>
 
 <!DOCTYPE html>
@@ -122,54 +123,39 @@
       </thead>
 
       <tbody>
-        <tr>
-          <th scope="row"><img src="./img/caja.png" width="50" alt="caja"></th>
-          <td>Caja</td>
-          <td scope="row"><img src="./img/contenedor azul.png" width="50" alt="contenedor azul"></td>
-          <td>0%</td>
-        </tr>
 
-        <tr>
-          <th scope="row"><img src="./img/bateria.png" width="50" alt="bateria"></th>
-          <td>Bateria</td>
-          <td scope="row"><img src="./img/contenedor rojo.png" width="50" alt="contenedor rojo"></td>
-          <td>98%</td>
-        </tr>
+        <?php
+        $qs = $conn->prepare('SELECT * FROM (rendimiento as re INNER JOIN material as ma ON re.nombreMaterial =ma.nombreMaterial), contenedores c WHERE c.contenedor=ma.contenedor and re.correo=:correo');
+        $qs->bindParam(':correo', $_SESSION['user_id']);
+        $qs->execute();
+        $materiales = $qs;
+        foreach($materiales as $material){
 
-        <tr>
-          <th scope="row"><img src="./img/pasta dental.png" width="50" alt="pasta dental"></th>
-          <td>Pasta dental</td>
-          <td scope="row"><img src="./img/contenedor gris oscuro.png" width="50" alt="contenedor gris oscuro"></td>
-          <td>76%</td>
-        </tr>
 
-        <tr>
-          <th scope="row"><img src="./img/teclado.png" width="50" alt="teclado"></th>
-          <td>Teclado</td>
-          <td scope="row"><img src="./img/contenedor purpura.png" width="50" alt="contenedor purpura"></td>
-          <td>85%</td>
-        </tr>
+          if($material['frecuenciaJuego']!=0)
+          {
+          echo '<tr>
+          <th scope="row"><img src="'.$material["imagen"].'" width="50" alt=""></th>
+          <td>'.$material["nombreMaterial"].'</td>
+          <td scope="row"><img src="'.$material["imagenContenedor"].'" width="50" alt=""></td>
+          <td>'.round((($material['frecuenciaIncorrecta']/$material['frecuenciaJuego'])*100),2).'%</td>
+          </tr>  ';
 
-        <tr>
-          <th scope="row"><img src="./img/botella de vidrio.png" width="50" alt="botella vidrio"></th>
-          <td>Botella de vidrio</td>
-          <td scope="row"><img src="./img/contenedor verde.png" width="50" alt="contenedor verde"></td>
-          <td>25%</td>
-        </tr>
 
-        <tr>
-          <th scope="row"><img src="./img/manzana.png" width="50" alt="manzana"></th>
-          <td>Manzana</td>
-          <td scope="row"><img src="./img/contenedor cafe.png" width="50" alt="contenedor cafe"></td>
-          <td>90%</td>
-        </tr>
+          }
+          else{
+            echo '<tr>
+          <th scope="row"><img src="'.$material["imagen"].'" width="50" alt=""></th>
+          <td>'.$material["nombreMaterial"].'</td>
+          <td scope="row"><img src="'.$material["imagenContenedor"].'" width="50" alt=""></td>
+          <td>'.(0).'%</td>
+          </tr>  ';
+          }
 
-        <tr>
-          <th scope="row"><img src="./img/tetrapack leche.png" width="50" alt="tetrapack leche"></th>
-          <td>Tetrapack de leche</td>
-          <td scope="row"><img src="./img/contenedor cafe claro.png" width="50" alt="contenedor cafe claro"></td>
-          <td>56%</td>
-        </tr>
+
+        }
+        ?>
+
       </tbody>
 
     </table>
@@ -188,34 +174,38 @@
       </thead>
 
       <tbody>
-        <tr>
-          <th scope="row"><img src="./img/bateria.png" width="50" alt="bateria"></th>
-          <td>Bateria</td>
-          <td scope="row"><img src="./img/contenedor rojo.png" width="50" alt="contenedor rojo"></td>
-          <td>98%</td>
-        </tr>
+        <?php
+        $qs = $conn->prepare('SELECT *, (re.frecuenciaIncorrecta/re.frecuenciaJuego) p FROM (rendimiento as re INNER JOIN material as ma ON re.nombreMaterial =ma.nombreMaterial), contenedores c WHERE c.contenedor=ma.contenedor and re.correo=:correo ORDER BY p DESC LIMIT 4');
+        $qs->bindParam(':correo', $_SESSION['user_id']);
+   
+        $qs->execute();
+        $materiales = $qs;
+        foreach($materiales as $material){
 
-        <tr>
-          <th scope="row"><img src="./img/pasta dental.png" width="50" alt="pasta dental"></th>
-          <td>Pasta dental</td>
-          <td scope="row"><img src="./img/contenedor gris oscuro.png" width="50" alt="contenedor gris oscuro"></td>
-          <td>76%</td>
-          </tr>
 
-        <tr>
-          <th scope="row"><img src="./img/teclado.png" width="50" alt="teclado"></th>
-          <td>Teclado</td>
-          <td scope="row"><img src="./img/contenedor purpura.png" width="50" alt="contenedor purpura"></td>
-          <td>85%</td>
-        </tr>
+          if($material['frecuenciaJuego']!=0)
+          {
+          echo '<tr>
+          <th scope="row"><img src="'.$material["imagen"].'" width="50" alt=""></th>
+          <td>'.$material["nombreMaterial"].'</td>
+          <td scope="row"><img src="'.$material["imagenContenedor"].'" width="50" alt=""></td>
+          <td>'.round((($material['frecuenciaIncorrecta']/$material['frecuenciaJuego'])*100),2).'%</td>
+          </tr>  ';
 
-        <tr>
-          <th scope="row"><img src="./img/manzana.png" width="50" alt="manzana"></th>
-          <td>Manzana</td>
-          <td scope="row"><img src="./img/contenedor cafe.png" width="50" alt="contenedor cafe"></td>
-          <td>90%</td>
-        </tr>
 
+          }
+          else{
+            echo '<tr>
+          <th scope="row"><img src="'.$material["imagen"].'" width="50" alt=""></th>
+          <td>'.$material["nombreMaterial"].'</td>
+          <td scope="row"><img src="'.$material["imagenContenedor"].'" width="50" alt=""></td>
+          <td>'.(0).'%</td>
+          </tr>  ';
+          }
+
+
+        }
+        ?>
         </tbody>
 
       </table>

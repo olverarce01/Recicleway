@@ -27,6 +27,25 @@
     $stmt->bindParam(':puntajeMax', $puntajeMax);
     $stmt->execute();
 
+
+    $qs = $conn->prepare('SELECT * FROM material');
+    $qs->execute();
+    $materiales = $qs;
+
+
+    foreach($materiales as $material){
+    $sql = "INSERT INTO rendimiento (idRegistro,correo,nombreMaterial,frecuenciaJuego,frecuenciaIncorrecta) VALUES (NULL,:correo,:nombreMaterial,:frecuenciaJuego,:frecuenciaIncorrecta)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':correo', $_POST['correo']);
+    $stmt->bindParam(':nombreMaterial', $material["nombreMaterial"]);
+    $frecuencias=0;
+    $stmt->bindParam(':frecuenciaJuego', $frecuencias);
+    $stmt->bindParam(':frecuenciaIncorrecta', $frecuencias);
+    $stmt->execute(); 
+    }
+
+       
+
   }
 ?>
 <!DOCTYPE html>
@@ -80,6 +99,7 @@
         </div>     
       </nav>
     </header>
+
 
     <!-- Contenido div main de registrar -->
     <div class="main" role="main">
