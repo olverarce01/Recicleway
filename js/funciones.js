@@ -143,7 +143,7 @@ var heigh2=img2.height;
 
         for(co of contenedores){
         if(co.tipo==img1.tipo){
-        pComentarios.textContent=`comentarios: El residuo ${img1.nombre} no va en ${img2.nombre}. Debe ir en ${co.nombre}`;
+        pComentarios.textContent=`!!comentarios: El residuo ${img1.nombre} no va en ${img2.nombre}. Debe ir en ${co.nombre}¡¡`;
         }
         }
         sumarFallo(img1.nombre);

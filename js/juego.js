@@ -8,6 +8,7 @@ var btnJugar=document.getElementById('jugar');
 btnJugar.onclick=function(){
         jugando=true;
         elementos=[];
+        pComentarios.textContent="-";
         var vRandom=obtenerValorRandom(0,jsonElementos.length);
         elementos.push(new Elemento(window_width/2,140,50,50,jsonElementos[vRandom].src,jsonElementos[vRandom].tipo,1,jsonElementos[vRandom].nombre));
         sumarFrecuencia(jsonElementos[vRandom].nombre);

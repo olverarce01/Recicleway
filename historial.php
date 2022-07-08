@@ -99,10 +99,10 @@
           </form>
         </div>   
         <?php else:?>
-             <br> Welcome. <?= $user['correo']; ?>
-            <br>You are Successfully Logged In
+            <i class="bi bi-file-earmark-person icono mx-2"></i>
+            <?= $user['correo']; ?>
             <a href="cerrarSesion.php">
-            Logout
+            <button class="btn btn-info mx-4">Logout</button>
             </a>
         <?php endif; ?>        
       </nav>
@@ -125,23 +125,22 @@
       <tbody>
 
         <?php
-        $qs = $conn->prepare('SELECT * FROM (rendimiento as re INNER JOIN material as ma ON re.nombreMaterial =ma.nombreMaterial), contenedores c WHERE c.contenedor=ma.contenedor and re.correo=:correo');
-        $qs->bindParam(':correo', $_SESSION['user_id']);
-        $qs->execute();
-        $materiales = $qs;
-        foreach($materiales as $material){
 
-
-          if($material['frecuenciaJuego']!=0)
-          {
-          echo '<tr>
-          <th scope="row"><img src="'.$material["imagen"].'" width="50" alt=""></th>
-          <td>'.$material["nombreMaterial"].'</td>
-          <td scope="row"><img src="'.$material["imagenContenedor"].'" width="50" alt=""></td>
-          <td>'.round((($material['frecuenciaIncorrecta']/$material['frecuenciaJuego'])*100),2).'%</td>
-          </tr>  ';
-
-
+        if (isset($_SESSION['user_id'])) {
+  
+          $qs = $conn->prepare('SELECT * FROM (rendimiento as re INNER JOIN material as ma ON re.nombreMaterial =ma.nombreMaterial), contenedores c WHERE c.contenedor=ma.contenedor and re.correo=:correo');
+          $qs->bindParam(':correo', $_SESSION['user_id']);
+          $qs->execute();
+          $materiales = $qs;
+          foreach($materiales as $material){
+            if($material['frecuenciaJuego']!=0)
+            {
+            echo '<tr>
+            <th scope="row"><img src="'.$material["imagen"].'" width="50" alt=""></th>
+            <td>'.$material["nombreMaterial"].'</td>
+           <td scope="row"><img src="'.$material["imagenContenedor"].'" width="50" alt=""></td>
+            <td>'.round((($material['frecuenciaIncorrecta']/$material['frecuenciaJuego'])*100),2).'%</td>
+            </tr>  ';
           }
           else{
             echo '<tr>
@@ -151,9 +150,13 @@
           <td>'.(0).'%</td>
           </tr>  ';
           }
-
-
+          }
+        }else{
+          echo '<tr>
+            <td>Inicia sesión para ver estadística</td>
+            </tr>  ';
         }
+      
         ?>
 
       </tbody>
@@ -175,12 +178,15 @@
 
       <tbody>
         <?php
-        $qs = $conn->prepare('SELECT *, (re.frecuenciaIncorrecta/re.frecuenciaJuego) p FROM (rendimiento as re INNER JOIN material as ma ON re.nombreMaterial =ma.nombreMaterial), contenedores c WHERE c.contenedor=ma.contenedor and re.correo=:correo ORDER BY p DESC LIMIT 4');
-        $qs->bindParam(':correo', $_SESSION['user_id']);
+
+
+        if (isset($_SESSION['user_id'])) {
+          $qs = $conn->prepare('SELECT *, (re.frecuenciaIncorrecta/re.frecuenciaJuego) p FROM (rendimiento as re INNER JOIN material as ma ON re.nombreMaterial =ma.nombreMaterial), contenedores c WHERE c.contenedor=ma.contenedor and re.correo=:correo ORDER BY p DESC LIMIT 4');
+          $qs->bindParam(':correo', $_SESSION['user_id']);
    
-        $qs->execute();
-        $materiales = $qs;
-        foreach($materiales as $material){
+          $qs->execute();
+          $materiales = $qs;
+          foreach($materiales as $material){
 
 
           if($material['frecuenciaJuego']!=0)
@@ -202,8 +208,11 @@
           <td>'.(0).'%</td>
           </tr>  ';
           }
-
-
+          }
+        }else{
+          echo '<tr>
+            <td>Inicia sesión para ver estadística</td>
+            </tr>  ';
         }
         ?>
         </tbody>

@@ -96,10 +96,10 @@
           </form>
         </div>   
         <?php else:?>
-             <br> Welcome. <?= $user['correo']; ?>
-            <br>You are Successfully Logged In
+            <i class="bi bi-file-earmark-person icono mx-2"></i>
+            <?= $user['correo']; ?>
             <a href="cerrarSesion.php">
-            Logout
+            <button class="btn btn-info mx-4">Logout</button>
             </a>
         <?php endif; ?>       
       </nav>

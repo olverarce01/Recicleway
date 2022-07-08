@@ -14,6 +14,8 @@
     if (count($results) > 0) {
       $user = $results;
     }
+  }else{
+    header('Location: /reciclaje-main');
   }
 ?>
 
@@ -36,9 +38,9 @@
  
 
     <div id="contenedor">
+        <a class="navbar-brand" href="index.php" name="inicio"><img class="logo" src="./img/logobeta1.png" alt="logo de la pagina" width="300px"></a>
         <!-- Puntaje del jugador, perdera puntos si el elemento a poner en contenedor choca con los elementos flotantes -->
         <p id="puntaje">Puntaje: - /<?=$user['puntajeMax']?></p> 
-        <p id="comentarios">comentarios: -</p> 
         <!-- Contenedor div del reproductor-->
         <div id="reproductor">
             <!-- Proporciona informacion en el navegador para cambiar de musica cuando el jugador da click en los botones del reproductor -->
@@ -69,12 +71,9 @@
             </div>
         </div>
         <button id="jugar">Jugar</button>
-         <?php if(!empty($user)): ?>
-            <br> Welcome. <?= $user['correo']; ?>
-        <?php else:?>
-            <br> Debes iniciar sesion
-        <?php endif; ?>
+        
     </div>
+    <p id="comentarios">-</p> 
     <!-- Parte del videojuego, se enfoca en canvas -->
     <canvas id="canvas"></canvas>
 
