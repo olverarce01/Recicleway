@@ -1,6 +1,6 @@
 <?php
  $data = $_POST;
- echo $data['correo'];
+ echo $data['idUsuario'];
  echo $data['puntajeMax'];
 
 
@@ -8,11 +8,11 @@
 
   $message = '';
 
-  if (!empty($_POST['correo'])) {
-    $sql = "UPDATE puntajes SET puntajeMax=:puntajeMax WHERE correo=:correo";
+  if (!empty($_POST['idUsuario'])) {
+    $sql = "UPDATE puntajes SET puntajeMax=:puntajeMax WHERE idUsuario=:idUsuario";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':correo', $_POST['correo']);
+    $stmt->bindParam(':idUsuario', $_POST['idUsuario']);
     $stmt->bindParam(':puntajeMax', $_POST['puntajeMax']);
 
     if ($stmt->execute()) {

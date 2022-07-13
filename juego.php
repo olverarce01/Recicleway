@@ -4,7 +4,7 @@
   require 'conexion.php';
 
   if (isset($_SESSION['user_id'])) {
-    $records = $conn->prepare('SELECT correo, puntajeMax FROM puntajes WHERE correo = :correo');
+    $records = $conn->prepare('SELECT idUsuario, puntajeMax FROM puntajes p INNER JOIN usuarios u on p.idUsuario = u.id  and correo = :correo');
     $records->bindParam(':correo', $_SESSION['user_id']);
     $records->execute();
     $results = $records->fetch(PDO::FETCH_ASSOC);
@@ -82,34 +82,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript">
 
-        var correo="<?=$user['correo']?>";
-        var puntajeMaxT=<?=$user['puntajeMax']?>;
+        var idUsuario="<?=$user['idUsuario']?>";
+        var puntajeMaxT="<?=$user['puntajeMax']?>";
         
         function actualizarPuntajeMax(puntajeMax){
             
+     
+
+
+
         if(puntajeMaxT<puntajeMax){
             puntajeMaxT=puntajeMax;
-            $.post('actualizarPuntaje.php',{correo: correo, puntajeMax:puntajeMax});
-            //fetch('actualizarPuntaje.php',{
-              //  method: 'POST',
-                //body: jsonPuntaje,
-                //headers: {
-                 //   "content-type": "application/json; charset=UTF-8"
-                //}
-            //})
-
-            //peticion_http=new XMLHttpRequest();
-            //peticion_http.open('POST','actualizarPuntaje.php',true);
-            //peticion_http.setRequestHeader('Content-type','application/json; charset=utf-8');
-            //peticion_http.send(jsonPuntaje);     
+            $.post('actualizarPuntaje.php',{idUsuario: idUsuario, puntajeMax:puntajeMax});
+             
         }
         }
 
         function sumarFallo(nombreMaterial){
-            $.post('sumarFallo.php',{correo: correo, nombreMaterial:nombreMaterial});
+            $.post('sumarFallo.php',{idUsuario: idUsuario, nombreMaterial:nombreMaterial});
         }
         function sumarFrecuencia(nombreMaterial){
-            $.post('sumarFrecuencia.php',{correo: correo, nombreMaterial:nombreMaterial});
+            $.post('sumarFrecuencia.php',{idUsuario: idUsuario, nombreMaterial:nombreMaterial});
         }
     </script>
     <script src="./js/funciones.js"></script>

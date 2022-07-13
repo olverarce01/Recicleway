@@ -13,10 +13,12 @@
 
     $message = '';
 
-    if (count($results) > 0 && $_POST['contrasena']==$results['contrasena']) {
+
+
+    if (!empty($results) && $_POST['contrasena']==$results['contrasena']) {
       $_SESSION['user_id'] = $results['correo'];
     } else {
-      $message = 'Sorry, those credentials do not match';
+      $message = 'Los datos ingresados no son correctos';
     }
   }
  if (isset($_SESSION['user_id'])) {
@@ -30,6 +32,11 @@
     if (count($results) > 0) {
       $user = $results;
     }
+  }
+   if(isset($_GET['logout'])){
+
+    session_unset();
+    session_destroy();
   }
 ?>
 <!doctype html>
@@ -47,10 +54,6 @@
   </head>
 
   <body>
-
-     <?php if(!empty($message)): ?>
-    <p> <?= $message ?></p>
-    <?php endif; ?>
     <!-- Parte del Header, este contendra la barra de navegacion, al clickear el logo se devolvera a la pagina principal
     Tendra 4 links de navegacion, "Jugar ahora", "Informacion", "Registrarse" y "Historial" donde se muestra si se inicio sesion
     Tambien una seccion para que el usuario pueda ingresar a su cuenta -->
@@ -98,13 +101,16 @@
         <?php else:?>
             <i class="bi bi-file-earmark-person icono mx-2"></i>
             <?= $user['correo']; ?>
-            <a href="cerrarSesion.php">
-            <button class="btn btn-info mx-4">Logout</button>
+            <a href="index.php?logout=true">
+            <button class="btn btn-outline-success mx-4 my-1 mr-sm-2">Cerrar sesión</button>
             </a>
         <?php endif; ?>       
       </nav>
     </header>
- 
+
+    <?php if(!empty($message)): ?>
+    <p class="text-center mensaje"><?= $message ?></p>
+    <?php endif; ?>
     <!-- Contenido main de la pagina principal -->
     <main role="main pt-2" class="main">
       <!-- Contenido div que se encarga de los items del carrusel, serie de dispositivas que recorre una serie de contenido -->

@@ -1,6 +1,6 @@
 <?php
  $data = $_POST;
- echo $data['correo'];
+ echo $data['idUsuario'];
  echo $data['nombreMaterial'];
 
 
@@ -8,12 +8,22 @@
 
   $message = '';
 
-  if (!empty($_POST['correo'])) {
-    $sql = "UPDATE rendimiento SET frecuenciaIncorrecta=frecuenciaIncorrecta+1 WHERE correo=:correo and nombreMaterial=:nombreMaterial";
+  if (!empty($_POST['idUsuario'])) {
+
+    $records = $conn->prepare('SELECT id FROM material WHERE nombre = :nombre');
+    $records->bindParam(':nombre', $_POST['nombreMaterial']);
+    $records->execute();
+    $results = $records->fetch(PDO::FETCH_ASSOC);
+
+
+
+
+
+    $sql = "UPDATE rendimiento SET frecuenciaIncorrecta=frecuenciaIncorrecta+1 WHERE idUsuario=:idUsuario and idMaterial=:idMaterial";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':correo', $_POST['correo']);
-    $stmt->bindParam(':nombreMaterial', $_POST['nombreMaterial']);
+    $stmt->bindParam(':idUsuario', $_POST['idUsuario']);
+    $stmt->bindParam(':idMaterial', $results['id']);
 
     if ($stmt->execute()) {
       $message = 'Successfully created new user';

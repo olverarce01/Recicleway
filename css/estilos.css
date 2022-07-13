@@ -158,3 +158,15 @@ a {
   color: white;
   margin: auto 30px;
 }
+
+
+/*mensajes de error*/
+.mensaje{
+  font-size: 20px;
+  color: white;
+  font-family: sans-serif;
+}
+td{
+  font-weight: bolder;
+  font-size: 20px;
+}

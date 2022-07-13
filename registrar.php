@@ -5,7 +5,7 @@
   $message = '';
 
   if (!empty($_POST['correo']) && !empty($_POST['contrasena'])) {
-    $sql = "INSERT INTO usuarios (nombre,apellido,correo,contrasena) VALUES (:nombre, :apellido,:correo,:contrasena)";
+    $sql = "INSERT INTO usuarios (id,nombre,apellido,correo,contrasena) VALUES (NULL,:nombre, :apellido,:correo,:contrasena)";
 
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':nombre', $_POST['nombre']);
@@ -20,32 +20,37 @@
       $message = 'Sorry there must have been an issue creating your account';
     }
 
-    $sql = "INSERT INTO puntajes (correo,puntajeMax) VALUES (:correo, :puntajeMax)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':correo', $_POST['correo']);
-    $puntajeMax=0;
-    $stmt->bindParam(':puntajeMax', $puntajeMax);
-    $stmt->execute();
+     $records = $conn->prepare('SELECT id FROM usuarios WHERE correo = :correo');
+    $records->bindParam(':correo', $_POST['correo']);
+    $records->execute();
+    $results = $records->fetch(PDO::FETCH_ASSOC);
+    if (!empty($results)) {
+      $idUsuario=$results['id'];
 
 
-    $qs = $conn->prepare('SELECT * FROM material');
-    $qs->execute();
-    $materiales = $qs;
+      $sql = "INSERT INTO puntajes (id,idUsuario,puntajeMax) VALUES (NULL,:idUsuario, :puntajeMax)";
+      $stmt = $conn->prepare($sql);
+      $stmt->bindParam(':idUsuario', $idUsuario);
+      $puntajeMax=0;
+      $stmt->bindParam(':puntajeMax', $puntajeMax);
+      $stmt->execute();
 
 
-    foreach($materiales as $material){
-    $sql = "INSERT INTO rendimiento (idRegistro,correo,nombreMaterial,frecuenciaJuego,frecuenciaIncorrecta) VALUES (NULL,:correo,:nombreMaterial,:frecuenciaJuego,:frecuenciaIncorrecta)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':correo', $_POST['correo']);
-    $stmt->bindParam(':nombreMaterial', $material["nombreMaterial"]);
-    $frecuencias=0;
-    $stmt->bindParam(':frecuenciaJuego', $frecuencias);
-    $stmt->bindParam(':frecuenciaIncorrecta', $frecuencias);
-    $stmt->execute(); 
+
+      $qs = $conn->prepare('SELECT id FROM material');
+      $qs->execute();
+      $materiales = $qs;
+      foreach($materiales as $material){
+        $sql = "INSERT INTO rendimiento (id,idUsuario,idMaterial,frecuenciaJuego,frecuenciaIncorrecta) VALUES (NULL,:idUsuario,:idMaterial,:frecuenciaJuego,:frecuenciaIncorrecta)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':idUsuario', $idUsuario);
+        $stmt->bindParam(':idMaterial', $material["id"]);
+        $frecuencias=0;
+        $stmt->bindParam(':frecuenciaJuego', $frecuencias);
+        $stmt->bindParam(':frecuenciaIncorrecta', $frecuencias);
+        $stmt->execute(); 
+      }
     }
-
-       
-
   }
 ?>
 <!DOCTYPE html>
@@ -111,7 +116,7 @@
           <div class="form-row buscador">
             <div class="col-md-12 mb-3">
               <label for="validationServer01">Nombre</label>
-              <input type="text" class="form-control is-valid w-50" id="validationServer01" placeholder="Nombre" value="" name="nombre" required>
+              <input type="text" class="form-control is-invalid w-50" id="validationServer01" placeholder="Nombre" value="" name="nombre" required>
 
               <!-- Muestra de ejemplo cuando se completa el input -->
               <div class="valid-feedback">
@@ -120,7 +125,7 @@
             </div>
             <div class="col-md-12 mb-3">
               <label for="validationServer02">Apellido</label>
-              <input type="text" class="form-control is-valid w-50" id="validationServer02" placeholder="Apellido" value="" name="apellido" required>
+              <input type="text" class="form-control is-invalid w-50" id="validationServer02" placeholder="Apellido" value="" name="apellido" required>
 
               <div class="valid-feedback">
               Se ve bien!
@@ -131,7 +136,7 @@
           <div class="form-row">
             <div class="col-md-12 mb-3">
               <label for="validationServer01">Correo</label>
-              <input type="email" class="form-control is-valid w-50" id="validationServer01" placeholder="Correo" value="" name="correo" required>
+              <input type="email" class="form-control is-invalid w-50" id="validationServer01" placeholder="Correo" value="" name="correo" required>
               <div class="valid-feedback">
               Se ve bien!
               </div>  
@@ -139,7 +144,7 @@
             <div class="col-md-12 mb-3">
               <label for="validationServer02">Contraseña</label>
 
-              <input type="password" class="form-control is-valid w-50" id="validationServer02" placeholder="Contraseña" value="" name="contrasena" required>
+              <input type="password" class="form-control is-invalid w-50" id="validationServer02" placeholder="Contraseña" value="" name="contrasena" required>
               <div class="valid-feedback">
               Se ve bien!
               </div>
@@ -148,7 +153,7 @@
           <!-- Clase contenedor div donde contiene el check input de aceptar terminos y condiciones, si no esta aceptado diria el mensaje "Debe estar de acuerod antes de enviar" -->
           <div class="form-group">
             <div class="form-check">
-              <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback" required>
+              <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback" name="terminos" onclick="handleClick(this)" required>
               <label class="form-check-label" for="invalidCheck3">
               Aceptar terminos y servicios
               </label>
@@ -173,5 +178,54 @@
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      $('input[name=nombre]').change( function () {
+        if(this.value.length>=3){
+          $('input[name=nombre]').removeClass("is-invalid");
+          $('input[name=nombre]').addClass("is-valid");
+        }else{
+          $('input[name=nombre]').removeClass("is-valid");
+          $('input[name=nombre]').addClass("is-invalid");
+        }
+      });
+      $('input[name=apellido]').change( function () {
+        if(this.value.length>=3){
+          $('input[name=apellido]').removeClass("is-invalid");
+          $('input[name=apellido]').addClass("is-valid");
+        }else{
+          $('input[name=apellido]').removeClass("is-valid");
+          $('input[name=apellido]').addClass("is-invalid");
+        }
+      });
+      $('input[name=correo]').change( function () {
+        if(this.value.length>=3){
+          $('input[name=correo]').removeClass("is-invalid");
+          $('input[name=correo]').addClass("is-valid");
+        }else{
+          $('input[name=correo]').removeClass("is-valid");
+          $('input[name=correo]').addClass("is-invalid");
+        }
+      });
+      $('input[name=contrasena]').change( function () {
+        if(this.value.length>=3){
+          $('input[name=contrasena]').removeClass("is-invalid");
+          $('input[name=contrasena]').addClass("is-valid");
+        }else{
+          $('input[name=contrasena]').removeClass("is-valid");
+          $('input[name=contrasena]').addClass("is-invalid");
+        }
+      });
+      
+      function handleClick(cb){
+        if(cb.checked)
+        {
+            $('input[name=terminos]').removeClass("is-invalid");
+            $('input[name=terminos]').addClass("is-valid");
+        }else{
+          $('input[name=terminos]').removeClass("is-valid");
+          $('input[name=terminos]').addClass("is-invalid");
+        }
+      }
+    </script>
   </body>
 </html>
