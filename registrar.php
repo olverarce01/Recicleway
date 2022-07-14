@@ -54,7 +54,7 @@
             }
           }
     } else {
-      $message = 'No se pudo agregar la cuenta';
+      $message = 'No se pudo agregar la cuenta, puede que la cuenta ya este en uso';
 
       $records = $conn->prepare('SELECT correo, contrasena FROM usuarios WHERE correo = :correo');
       $records->bindParam(':correo', $_POST['correo']);
@@ -62,11 +62,6 @@
       $results = $records->fetch(PDO::FETCH_ASSOC);
 
       $user = null;
-
-      if (count($results) > 0) {
-        $message=$message .' porque el correo ya esta usado';
-      }
-
     }
   }
 ?>
