@@ -272,6 +272,7 @@ var heigh2=img2.height;
         
         audioCorrect.play();
         puntaje++;
+	actualizarPuntajeMax(puntaje);
         pPuntaje.textContent=`Puntaje: ${puntaje} / ${puntajeMaxT}`;
 
 
