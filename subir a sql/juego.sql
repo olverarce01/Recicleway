@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-07-2022 a las 20:08:05
+-- Tiempo de generación: 14-07-2022 a las 21:33:30
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -127,7 +127,9 @@ CREATE TABLE `puntajes` (
 --
 
 INSERT INTO `puntajes` (`id`, `idUsuario`, `puntajeMax`) VALUES
-(16, 18, 0);
+(16, 18, 0),
+(17, 19, 19),
+(18, 23, 0);
 
 -- --------------------------------------------------------
 
@@ -189,7 +191,91 @@ INSERT INTO `rendimiento` (`id`, `idUsuario`, `idMaterial`, `frecuenciaJuego`, `
 (839, 18, 39, 0, 0),
 (840, 18, 40, 0, 0),
 (841, 18, 41, 0, 0),
-(842, 18, 42, 0, 0);
+(842, 18, 42, 0, 0),
+(843, 19, 1, 3, 0),
+(844, 19, 2, 1, 1),
+(845, 19, 3, 2, 0),
+(846, 19, 4, 4, 0),
+(847, 19, 5, 1, 0),
+(848, 19, 6, 1, 0),
+(849, 19, 7, 1, 0),
+(850, 19, 8, 2, 0),
+(851, 19, 9, 1, 0),
+(852, 19, 10, 4, 0),
+(853, 19, 11, 1, 0),
+(854, 19, 12, 1, 0),
+(855, 19, 13, 1, 1),
+(856, 19, 14, 1, 0),
+(857, 19, 15, 2, 0),
+(858, 19, 16, 2, 1),
+(859, 19, 17, 2, 0),
+(860, 19, 18, 4, 0),
+(861, 19, 19, 0, 0),
+(862, 19, 20, 2, 2),
+(863, 19, 21, 3, 0),
+(864, 19, 22, 1, 0),
+(865, 19, 23, 1, 0),
+(866, 19, 24, 1, 0),
+(867, 19, 25, 2, 0),
+(868, 19, 26, 1, 0),
+(869, 19, 27, 1, 0),
+(870, 19, 28, 4, 0),
+(871, 19, 29, 2, 0),
+(872, 19, 30, 2, 0),
+(873, 19, 31, 3, 0),
+(874, 19, 32, 5, 0),
+(875, 19, 33, 1, 0),
+(876, 19, 34, 1, 0),
+(877, 19, 35, 2, 1),
+(878, 19, 36, 1, 0),
+(879, 19, 37, 2, 0),
+(880, 19, 38, 4, 0),
+(881, 19, 39, 3, 0),
+(882, 19, 40, 1, 0),
+(883, 19, 41, 0, 0),
+(884, 19, 42, 3, 0),
+(885, 23, 1, 0, 0),
+(886, 23, 2, 0, 0),
+(887, 23, 3, 0, 0),
+(888, 23, 4, 0, 0),
+(889, 23, 5, 0, 0),
+(890, 23, 6, 0, 0),
+(891, 23, 7, 0, 0),
+(892, 23, 8, 0, 0),
+(893, 23, 9, 0, 0),
+(894, 23, 10, 0, 0),
+(895, 23, 11, 0, 0),
+(896, 23, 12, 0, 0),
+(897, 23, 13, 0, 0),
+(898, 23, 14, 0, 0),
+(899, 23, 15, 0, 0),
+(900, 23, 16, 0, 0),
+(901, 23, 17, 0, 0),
+(902, 23, 18, 0, 0),
+(903, 23, 19, 0, 0),
+(904, 23, 20, 0, 0),
+(905, 23, 21, 0, 0),
+(906, 23, 22, 0, 0),
+(907, 23, 23, 0, 0),
+(908, 23, 24, 0, 0),
+(909, 23, 25, 0, 0),
+(910, 23, 26, 0, 0),
+(911, 23, 27, 0, 0),
+(912, 23, 28, 0, 0),
+(913, 23, 29, 0, 0),
+(914, 23, 30, 0, 0),
+(915, 23, 31, 0, 0),
+(916, 23, 32, 0, 0),
+(917, 23, 33, 0, 0),
+(918, 23, 34, 0, 0),
+(919, 23, 35, 0, 0),
+(920, 23, 36, 0, 0),
+(921, 23, 37, 0, 0),
+(922, 23, 38, 0, 0),
+(923, 23, 39, 0, 0),
+(924, 23, 40, 0, 0),
+(925, 23, 41, 0, 0),
+(926, 23, 42, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -210,7 +296,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `correo`, `contrasena`) VALUES
-(18, 'ejemplo', 'ejemplo', 'ejemplo@ejemplo', '$2y$10$eAo5T7mtMDMmqq1zYaInnOHSG2KBeQEsAuHc26oM7ETi7HEMMKsie');
+(18, 'ejemplo', 'ejemplo', 'ejemplo@ejemplo', '$2y$10$eAo5T7mtMDMmqq1zYaInnOHSG2KBeQEsAuHc26oM7ETi7HEMMKsie'),
+(19, 'olver', 'arce', 'olver@arce', '$2y$10$h.oMDKHzDIcYQW6ZgK/4LeR1R0litNcqxUYKml5aZRmCNDv6hFyUG'),
+(23, 'jose', 'limache', 'jose@limache', '$2y$10$Ub.UC38BR4eKCRYQX7eUK.27Vfea25Ya13wTFCn/sRkmIdlPqXeQ.');
 
 --
 -- Índices para tablas volcadas
@@ -226,7 +314,8 @@ ALTER TABLE `contenedores`
 -- Indices de la tabla `material`
 --
 ALTER TABLE `material`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `material_ibfk_1` (`idContenedor`);
 
 --
 -- Indices de la tabla `puntajes`
@@ -270,19 +359,19 @@ ALTER TABLE `material`
 -- AUTO_INCREMENT de la tabla `puntajes`
 --
 ALTER TABLE `puntajes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `rendimiento`
 --
 ALTER TABLE `rendimiento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=843;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=927;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Restricciones para tablas volcadas
@@ -292,7 +381,7 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `material`
 --
 ALTER TABLE `material`
-  ADD CONSTRAINT `material_ibfk_1` FOREIGN KEY (`contenedor`) REFERENCES `contenedores` (`contenedor`) ON DELETE CASCADE;
+  ADD CONSTRAINT `material_ibfk_1` FOREIGN KEY (`idContenedor`) REFERENCES `contenedores` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `puntajes`
