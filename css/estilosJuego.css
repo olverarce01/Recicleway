@@ -84,3 +84,9 @@ button:hover{
 	text-align: center;
 	background-color: lightsteelblue;
 }
+
+.aviso{
+	font-size: 30px;
+	font-family: sans-serif;
+	text-align: center;
+}

@@ -172,6 +172,7 @@ var heigh2=img2.height;
         pComentarios.textContent=`!!comentarios: El residuo ${img1.nombre} no va en ${img2.nombre}. Debe ir en ${co.nombre}¡¡`;
         }
         }
+        audioLose.play();
         sumarFallo(img1.nombre);
         jugando=false;
         return true;    
@@ -181,7 +182,7 @@ var heigh2=img2.height;
             actualizarPuntajeMax(puntaje);
             pPuntaje.textContent=`Puntaje: ${puntaje} / ${puntajeMaxT}`;
 
-
+            audioCorrect.play();
             efectoPuntaje.push(new EfectoPuntaje(50,window_height/2,2,"+1",true)); 
             
 
@@ -241,6 +242,7 @@ var heigh2=img2.height;
         ypos1+height1>ypos2){
 
         if(puntaje>0){
+        audioIncorrect.play();
         puntaje--;
         pPuntaje.textContent=`Puntaje: ${puntaje} / ${puntajeMaxT}`;
         
@@ -268,6 +270,7 @@ var heigh2=img2.height;
         ypos1<ypos2+heigh2 &&
         ypos1+height1>ypos2){
         
+        audioCorrect.play();
         puntaje++;
         pPuntaje.textContent=`Puntaje: ${puntaje} / ${puntajeMaxT}`;
 

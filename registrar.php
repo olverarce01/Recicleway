@@ -84,9 +84,7 @@
   </head>
   <body>
 
-    <?php if(!empty($message)): ?>
-      <p> <?= $message ?></p>
-    <?php endif; ?>
+  
 
 
     <!-- Parte del Header, este contendra la barra de navegacion, al clickear el logo se devolvera a la pagina principal
@@ -121,7 +119,9 @@
       </nav>
     </header>
 
-
+  <?php if(!empty($message)): ?>
+      <p class="text-center mensaje"> <?= $message ?></p>
+    <?php endif; ?>
     <!-- Contenido div main de registrar -->
     <div class="main" role="main">
       <!-- Contenido div donde estara el formulario -->

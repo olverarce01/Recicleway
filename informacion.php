@@ -14,7 +14,7 @@
     $message = '';
 
 
-    if (!empty($results) && $_POST['contrasena']==$results['contrasena']) {
+    if (!empty($results) && password_verify($_POST['contrasena'], $results['contrasena'])) {
       $_SESSION['user_id'] = $results['correo'];
     } else {
       $message = 'Los datos ingresados no son correctos';
@@ -90,7 +90,7 @@
         <!-- Formulario para iniciar sesion -->
         <?php if (!isset($_SESSION['user_id'])): ?>
         <div class="form-login">
-          <form class="form-inline my-1 mr-md-2 mt-sm-0" action="informacion.php" method="post">
+          <form class="form-inline my-1 mr-md-2 mt-sm-0" action="informacion.php" method="post" autocomplete="off">
             <div class="row">
               <div class="col">
                 <i class="bi bi-file-earmark-person icono"></i>
