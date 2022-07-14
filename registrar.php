@@ -19,7 +19,7 @@
 
 
     $stmt->bindParam(':contrasena', $contrasenaHash);
-
+    // Verificacion de la registracion de cuenta y sus restricciones, no se debe repetir el correo.
     if ($stmt->execute()) {
           $message = 'La cuenta se agrego';
           $records = $conn->prepare('SELECT id FROM usuarios WHERE correo = :correo');
