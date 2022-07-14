@@ -1,3 +1,4 @@
+<!-- Implementacion php sobre actualizar el puntuaje del usuario -->
 <?php
  $data = $_POST;
  echo $data['idUsuario'];

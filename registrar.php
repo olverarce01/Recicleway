@@ -1,3 +1,4 @@
+<!-- Implementacion php sobre el inicio de sesion, conexion.php -->
 <?php
 
   require 'conexion.php';
@@ -18,7 +19,7 @@
 
 
     $stmt->bindParam(':contrasena', $contrasenaHash);
-
+    // Verificacion de la registracion de cuenta y sus restricciones, no se debe repetir el correo.
     if ($stmt->execute()) {
           $message = 'La cuenta se agrego';
           $records = $conn->prepare('SELECT id FROM usuarios WHERE correo = :correo');
@@ -190,11 +191,12 @@
       <p class="float-right"><a href="#inicio">Volver hacia arriba</a></p>
       <p>© 2022-2022 Company RecycleWay, Inc. · <a href="#">Informacion</a> · <a href="#">Terminos y condiciones</a></p>
     </footer>
-    <!-- Scripts utilizados o que se van a utilizar a futuro-->
+    <!-- Scripts utilizados-->
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript">
+      // Restricciones de dominio, longitud del texto
       $('input[name=nombre]').change( function () {
         if(this.value.length>=3){
           $('input[name=nombre]').removeClass("is-invalid");

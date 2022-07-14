@@ -1,3 +1,4 @@
+<!-- Implementacion de conexion por la base de datos del usuario -->
 <?php
 
 $server = 'localhost';

@@ -1,3 +1,4 @@
+<!-- Implementacion php sobre el inicio de sesion, conexion.php -->
 <?php
 
   session_start();
@@ -75,6 +76,7 @@
             <li class="nav-item">
               <a class="nav-link" href="informacion.php">Información</a>
             </li>
+            <!-- Si esta activa la sesion -->
             <?php if (!isset($_SESSION['user_id'])): ?>
             <li class="nav-item">
               <a class="nav-link" href="registrar.php">Registrate</a>
@@ -120,6 +122,7 @@
         <ol class="carousel-indicators">
           <li data-target="#myCarousel" data-slide-to="0" class=""></li>
           <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
+          <!-- Desactivar el carrusel de registrar tras ya tener una cuenta iniciada -->
           <?php if (!isset($_SESSION['user_id'])): ?>
           <li data-target="#myCarousel" data-slide-to="2" class=""></li>
           <?php endif; ?>       
@@ -232,7 +235,7 @@
       <p>© 2022-2022 Company RecycleWay, Inc. · <a href="#">Informacion</a> · <a href="#">Terminos y condiciones</a></p>
     </footer>
 
-    <!-- Scripts utilizados o que se van a utilizar a futuro-->
+    <!-- Scripts utilizados-->
     <script src="js/jquery-3.3.1.min.js"></script>
     <!-- Script que "normaliza" las alturas de los elementos del carrusel de Bootstrap -->
     <script type="text/javascript">

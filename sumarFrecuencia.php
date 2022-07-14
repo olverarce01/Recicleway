@@ -1,3 +1,5 @@
+<!-- Implementaion de php donde hace la frecuencia que aparece el objeto que ve en el usuario -->
+
 <?php
  $data = $_POST;
  echo $data['idUsuario'];

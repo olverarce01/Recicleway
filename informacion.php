@@ -1,3 +1,4 @@
+<!-- Implementacion php sobre el inicio de sesion, conexion.php -->
 <?php
 
   session_start();
