@@ -1,3 +1,4 @@
+<!-- Implementaion de php donde hace la frecuencia de fallos del usuario -->
 <?php
  $data = $_POST;
  echo $data['idUsuario'];

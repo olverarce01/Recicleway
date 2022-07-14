@@ -1,3 +1,4 @@
+<!-- Implementacion php sobre el inicio de sesion, conexion.php -->
 <?php
   session_start();
 
@@ -105,6 +106,7 @@
     </script>
     <script src="./js/funciones.js"></script>
     <script src="./js/juego.js"></script>
+    <!-- Aviso que debe tener una sesion para iniciar el videojuego-->
     <?php else:?>
         <div id="contenedor">
             <a class="navbar-brand" href="index.php" name="inicio"><img class="logo" src="./img/logobeta1.png" alt="logo de la pagina" width="300px"></a>

@@ -130,7 +130,7 @@
       </thead>
 
       <tbody>
-        <!-- Implementacion php para conseguir datos de la tabla y imprimirlas -->
+        <!-- Implementacion php para conseguir datos de la primera tabla-->
         <?php
 
         if (isset($_SESSION['user_id'])) {
@@ -184,6 +184,7 @@
       </thead>
 
       <tbody>
+        <!-- Implementacion php para conseguir datos de la segunda tabla-->
         <?php
 
 
