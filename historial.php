@@ -1,3 +1,4 @@
+<!-- Implementacion php sobre el inicio de sesion, conexion.php -->
 <?php
 
   session_start();
@@ -76,6 +77,7 @@
             <li class="nav-item">
               <a class="nav-link" href="informacion.php">Información</a>
             </li>
+            <!-- Si esta activa la sesion -->
              <?php if (!isset($_SESSION['user_id'])): ?>
             <li class="nav-item">
               <a class="nav-link" href="registrar.php">Registrate</a>
@@ -128,7 +130,7 @@
       </thead>
 
       <tbody>
-
+        <!-- Implementacion php para conseguir datos de la tabla y imprimirlas -->
         <?php
 
         if (isset($_SESSION['user_id'])) {
@@ -143,24 +145,24 @@
             echo '<tr>
             <th scope="row"><img src="'.$material["imagenResiduo"].'" width="50" alt=""></th>
             <td>'.$material["nombreMaterial"].'</td>
-           <td scope="row"><img src="'.$material["imagen"].'" width="50" alt=""></td>
+            <td scope="row"><img src="'.$material["imagen"].'" width="50" alt=""></td>
             <td>'.round((($material['frecuenciaIncorrecta']/$material['frecuenciaJuego'])*100),2).'%</td>
             </tr>  ';
-          }
-          else{
-            echo '<tr>
-          <th scope="row"><img src="'.$material["imagenResiduo"].'" width="50" alt=""></th>
-          <td>'.$material["nombreMaterial"].'</td>
-          <td scope="row"><img src="'.$material["imagen"].'" width="50" alt=""></td>
-          <td>'.(0).'%</td>
-          </tr>  ';
-          }
-          }
-        }else{
-          echo '<tr>
-            <td>Inicia sesión para ver estadística</td>
+            }
+            else{
+              echo '<tr>
+            <th scope="row"><img src="'.$material["imagenResiduo"].'" width="50" alt=""></th>
+            <td>'.$material["nombreMaterial"].'</td>
+            <td scope="row"><img src="'.$material["imagen"].'" width="50" alt=""></td>
+            <td>'.(0).'%</td>
             </tr>  ';
-        }
+            }
+            }
+          }else{
+            echo '<tr>
+              <td>Inicia sesión para ver estadística</td>
+              </tr>  ';
+          }
       
         ?>
 
@@ -231,7 +233,7 @@
       <p>© 2022-2022 Company RecycleWay, Inc. · <a href="#">Informacion</a> · <a href="#">Terminos y condiciones</a></p>
     </footer>
 
-    <!-- Scripts utilizados o que se van a utilizar a futuro-->
+    <!-- Scripts utilizados-->
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
