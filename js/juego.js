@@ -8,6 +8,9 @@ var sacarEfecto=false;
 var puntaje=0;
 var puntajeMax=0;
 
+var audioCorrect= new Audio('./audio/correct.wav');
+var audioIncorrect= new Audio('./audio/incorrect.wav');
+var audioLose= new Audio('./audio/lose.wav');
 
 
 var btnJugar=document.getElementById('jugar');

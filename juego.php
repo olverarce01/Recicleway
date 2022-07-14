@@ -106,7 +106,11 @@
     <script src="./js/funciones.js"></script>
     <script src="./js/juego.js"></script>
     <?php else:?>
-    <p>Inicia sesión primero</p>
+        <div id="contenedor">
+            <a class="navbar-brand" href="index.php" name="inicio"><img class="logo" src="./img/logobeta1.png" alt="logo de la pagina" width="300px"></a>
+            <p class="aviso">Inicia sesión primero</p>      
+        </div>
+      
     <?php endif; ?>  
 </body>
 </html>
