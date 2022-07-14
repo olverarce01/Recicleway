@@ -15,7 +15,7 @@
 
 
 
-    if (!empty($results) && $_POST['contrasena']==$results['contrasena']) {
+    if (!empty($results) && password_verify($_POST['contrasena'], $results['contrasena'])) {
       $_SESSION['user_id'] = $results['correo'];
     } else {
       $message = 'Los datos ingresados no son correctos';
@@ -75,9 +75,11 @@
             <li class="nav-item">
               <a class="nav-link" href="informacion.php">Información</a>
             </li>
+            <?php if (!isset($_SESSION['user_id'])): ?>
             <li class="nav-item">
               <a class="nav-link" href="registrar.php">Registrate</a>
             </li>
+            <?php endif; ?>       
             <li class="nav-item">
               <a class="nav-link" href="historial.php">Historial</a>
             </li>
@@ -118,7 +120,9 @@
         <ol class="carousel-indicators">
           <li data-target="#myCarousel" data-slide-to="0" class=""></li>
           <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
+          <?php if (!isset($_SESSION['user_id'])): ?>
           <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+          <?php endif; ?>       
         </ol>
         <!-- Contenido div que se encarga de las tres dispositivas del carrusel -->
         <div class="carousel-inner">
@@ -151,6 +155,7 @@
             </div>
           </div>
           <!-- Item n°3 - carrusel -->
+          <?php if (!isset($_SESSION['user_id'])): ?>
           <div class="carousel-item px-5">
             <div class="row featurette pt-2">
               <div class="col-md-6 text-center mt-5">
@@ -163,6 +168,7 @@
               </div>
             </div> 
           </div>
+          <?php endif; ?>       
           <!-- Botones que cambian el contenido item del carrusel -->
           <button class="carousel-control-prev" type="button" data-target="#myCarousel" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

@@ -1,18 +1,65 @@
-var jugando=true;
+var jugando=false;
 var pPuntaje=document.getElementById('puntaje');
 var pComentarios=document.getElementById('comentarios');
+var efectoPuntaje=[]
+var efectoAsacar;
+var sacarEfecto=false;
 
 var puntaje=0;
 var puntajeMax=0;
+
+
+
 var btnJugar=document.getElementById('jugar');
 btnJugar.onclick=function(){
-        jugando=true;
-        elementos=[];
-        pComentarios.textContent="-";
-        var vRandom=obtenerValorRandom(0,jsonElementos.length);
-        elementos.push(new Elemento(window_width/2,140,50,50,jsonElementos[vRandom].src,jsonElementos[vRandom].tipo,1,jsonElementos[vRandom].nombre));
-        sumarFrecuencia(jsonElementos[vRandom].nombre);
-        game();
+        if(!jugando){
+            
+            enemigos=[]
+            plus=[]
+            jugando=true;
+            elementos=[];
+            pComentarios.textContent="-";
+            var vRandom=obtenerValorRandom(0,jsonElementos.length);
+            elementos.push(new Elemento(window_width/2,140,50,50,jsonElementos[vRandom].src,jsonElementos[vRandom].tipo,1,jsonElementos[vRandom].nombre));
+            sumarFrecuencia(jsonElementos[vRandom].nombre);
+            
+
+             for (let i=0;i<nEnemigos ; i++) {
+                enemigos.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcEnemigos[obtenerValorRandom(0,srcEnemigos.length)]));
+            }
+
+
+            switch(jsonElementos[vRandom].tipo){
+                case 'azul': {
+                    plus.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcPlus[1]));
+                    break;}
+                case 'verde':{
+                    plus.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcPlus[0]));
+                    plus.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcPlus[2]));
+                    break;}
+                case 'amarillo':{
+                    plus.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcPlus[0]));
+                    plus.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcPlus[1]));
+                    plus.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcPlus[2]));
+                    break;
+                }
+                case 'cafe claro':{
+                    plus.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcPlus[0]));
+                    plus.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcPlus[1]));
+                    plus.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcPlus[2]));
+                    break;
+                }
+                case 'gris claro':{
+                    plus.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcPlus[0]));
+                    plus.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcPlus[1]));
+                    plus.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcPlus[2]));
+                    break;
+                }
+                default:{break;}
+
+            }
+            game();
+        }
 }
 
 
@@ -26,6 +73,11 @@ var nEnemigos=3;
 var sacarEnemigo=false;
 var enemigoASacar;
 
+var srcPlus=['./img/secarResiduo.png','./img/reducirResiduo.png','./img/desinfectarResiduo.png'];
+var plus=[];
+var nPlus=3;
+var sacarPlus=false;
+var plusASacar;
 
 
 let canvas=document.getElementById("canvas");
@@ -84,17 +136,13 @@ function agregarElementos(){
             var dataJson=peticion_http2.responseText;
             var dataParsed=JSON.parse(dataJson);
             jsonElementos=dataParsed;
-            
-            var vRandom=obtenerValorRandom(0,jsonElementos.length-1);
-            elementos.push(new Elemento(window_width/2,140,50,50,jsonElementos[vRandom].src,jsonElementos[vRandom].tipo,1,jsonElementos[vRandom].nombre));
-            sumarFrecuencia(jsonElementos[vRandom].nombre);
         }
     }
 }
 var instrucciones=new Img(window_width-400,window_height/2,400,200,'./img/botones.png');
-for (let i=0;i<nEnemigos ; i++) {
-    enemigos.push(new Enemigo(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcEnemigos[obtenerValorRandom(0,srcEnemigos.length)]));
-}
+
+
+
 
 
 function game(){
@@ -108,6 +156,12 @@ function game(){
     for (en of enemigos){
         en.update(ctx);
     }
+
+    for (pl of plus){
+        pl.update(ctx);
+    }
+    
+
     for(el of elementos){
         el.update(ctx);
     }
@@ -121,11 +175,30 @@ function game(){
         for(en of enemigos){
             if(colisionEnemigo(el,en)){sacarEnemigo=true; enemigoASacar=en;}
         }
+
+        for(pl of plus){
+            if(colisionPlus(el,pl)){sacarPlus=true; plusASacar=pl;}
+        }
+        
+
         if(sacarEnemigo){
             enemigos=eliminarEnemigo(enemigos,enemigoASacar); sacarEnemigo=false;
         }
+        if(sacarPlus){
+            plus=eliminarPlus(plus,plusASacar); sacarPlus=false;
+        }
 
     }
+    for(pun of efectoPuntaje){
+        pun.update(ctx);
+        if(pun.fin){
+            sacarEfecto=true; efectoAsacar=pun;
+        }
+    }
+    if(sacarEfecto){
+        efectoPuntaje=eliminarEfecto(efectoPuntaje,efectoAsacar); sacarEfecto=false;
+    }
+
     if(!jugando){
         alertaPerder(ctx);
     }

@@ -69,7 +69,7 @@ class Elemento{
     }
 }
 
-class Enemigo{
+class Factor{
     constructor(xpos,ypos,width,height,src){
     this.xpos=xpos;
     this.ypos=ypos;
@@ -108,7 +108,23 @@ function obtenerValorRandom(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
+
+
 function eliminarEnemigo(array, elemento) {
+    var resultado=[];
+    for(var i=0; i<array.length;i++){
+        if(array[i]!==elemento){
+            resultado.push(array[i]);
+        }
+    }
+    resultado.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcEnemigos[obtenerValorRandom(0,srcEnemigos.length)]));
+    return resultado;
+}
+
+
+
+
+function eliminarPlus(array, elemento) {
     var resultado=[];
     for(var i=0; i<array.length;i++){
         if(array[i]!==elemento){
@@ -118,6 +134,16 @@ function eliminarEnemigo(array, elemento) {
     return resultado;
 }
 
+
+function eliminarEfecto(array, elemento) {
+    var resultado=[];
+    for(var i=0; i<array.length;i++){
+        if(array[i]!==elemento){
+            resultado.push(array[i]);
+        }
+    }
+    return resultado;
+}
 
 function colision(img1,img2){
 var xpos1=img1.xpos;
@@ -154,11 +180,46 @@ var heigh2=img2.height;
             puntaje++;
             actualizarPuntajeMax(puntaje);
             pPuntaje.textContent=`Puntaje: ${puntaje} / ${puntajeMaxT}`;
+
+
+            efectoPuntaje.push(new EfectoPuntaje(50,window_height/2,2,"+1",true)); 
             
 
             var vRandom=obtenerValorRandom(0,jsonElementos.length);
             elementos.push(new Elemento(window_width/2,140,50,50,jsonElementos[vRandom].src,jsonElementos[vRandom].tipo,1,jsonElementos[vRandom].nombre));
             sumarFrecuencia(jsonElementos[vRandom].nombre);   
+
+
+            plus=[]
+            switch(jsonElementos[vRandom].tipo){
+                case 'azul': {
+                    plus.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcPlus[1]));
+                    break;}
+                case 'verde':{
+                    plus.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcPlus[0]));
+                    plus.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcPlus[2]));
+                    break;}
+                case 'amarillo':{
+                    plus.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcPlus[0]));
+                    plus.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcPlus[1]));
+                    plus.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcPlus[2]));
+                    break;
+                }
+                case 'cafe claro':{
+                    plus.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcPlus[0]));
+                    plus.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcPlus[1]));
+                    plus.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcPlus[2]));
+                    break;
+                }
+                case 'gris claro':{
+                    plus.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcPlus[0]));
+                    plus.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcPlus[1]));
+                    plus.push(new Factor(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcPlus[2]));
+                    break;
+                }
+                default:{break;}
+
+            }
         }          
     }
     return false;
@@ -183,12 +244,41 @@ var heigh2=img2.height;
         puntaje--;
         pPuntaje.textContent=`Puntaje: ${puntaje} / ${puntajeMaxT}`;
         
+
+        efectoPuntaje.push(new EfectoPuntaje(50,window_height/2,2,"-1",false)); 
         }
-        enemigos.push(new Enemigo(obtenerValorRandom(0,window_width-100),obtenerValorRandom(140,window_height-100),100,100,srcEnemigos[obtenerValorRandom(0,srcEnemigos.length)]));
         return true;
     }
     return false;
 }
+
+function colisionPlus(img1,img2){
+var xpos1=img1.xpos;
+var ypos1=img1.ypos;
+var width1=img1.width;
+var height1=img1.height;
+
+var xpos2=img2.xpos;
+var ypos2=img2.ypos;
+var width2=img2.width;
+var heigh2=img2.height;
+
+    if(xpos1<xpos2+width2 &&
+        xpos1+width1>xpos2 &&
+        ypos1<ypos2+heigh2 &&
+        ypos1+height1>ypos2){
+        
+        puntaje++;
+        pPuntaje.textContent=`Puntaje: ${puntaje} / ${puntajeMaxT}`;
+
+
+        efectoPuntaje.push(new EfectoPuntaje(50,window_height/2,2,"+1",true)); 
+
+        return true;
+    }
+    return false;
+}
+
 function alertaPerder(ctx){
     ctx.fillStyle = "#20b2aa";
     ctx.fillRect((window_width/2)-200,(window_height/2)-100, 400, 150);
@@ -197,4 +287,37 @@ function alertaPerder(ctx){
     ctx.textAlign = "center";
     ctx.fillText("Perdiste",window_width/2,window_height/2);
 
+}
+
+
+class EfectoPuntaje{
+    constructor(xpos,ypos,dy,puntaje,sumar){
+    this.xpos=xpos;
+    this.ypos=ypos;
+    this.dy=dy;
+    this.puntaje=puntaje;
+    this.fin=false;
+    this.sumar=sumar;
+    }
+    draw(context){
+        if(this.sumar){
+        context.fillStyle = "#00b347";
+        context.font = "60px monospace";
+        context.textAlign = "center";
+        context.fillText(this.puntaje,this.xpos,this.ypos); 
+        }else{
+        context.fillStyle = "red";
+        context.font = "60px monospace";
+        context.textAlign = "center";
+        context.fillText(this.puntaje,this.xpos,this.ypos);   
+
+        }
+    }
+    update(context){
+        this.draw(context);
+        if(this.ypos<50){
+            this.fin=true;
+        }
+        this.ypos-=this.dy;
+    }
 }

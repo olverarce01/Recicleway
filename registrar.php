@@ -11,45 +11,61 @@
     $stmt->bindParam(':nombre', $_POST['nombre']);
     $stmt->bindParam(':apellido', $_POST['apellido']);
     $stmt->bindParam(':correo', $_POST['correo']);
+
+
+    $contrasenaHash=password_hash($_POST['contrasena'], PASSWORD_DEFAULT);
    // $contrasena = password_hash(, PASSWORD_BCRYPT);
-    $stmt->bindParam(':contrasena', $_POST['contrasena']);
+
+
+    $stmt->bindParam(':contrasena', $contrasenaHash);
 
     if ($stmt->execute()) {
-      $message = 'Successfully created new user';
+          $message = 'La cuenta se agrego';
+          $records = $conn->prepare('SELECT id FROM usuarios WHERE correo = :correo');
+          $records->bindParam(':correo', $_POST['correo']);
+          $records->execute();
+          $results = $records->fetch(PDO::FETCH_ASSOC);
+          if (!empty($results)) {
+            $idUsuario=$results['id'];
+
+
+            $sql = "INSERT INTO puntajes (id,idUsuario,puntajeMax) VALUES (NULL,:idUsuario, :puntajeMax)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':idUsuario', $idUsuario);
+            $puntajeMax=0;
+            $stmt->bindParam(':puntajeMax', $puntajeMax);
+            $stmt->execute();
+
+
+
+            $qs = $conn->prepare('SELECT id FROM material');
+            $qs->execute();
+            $materiales = $qs;
+            foreach($materiales as $material){
+              $sql = "INSERT INTO rendimiento (id,idUsuario,idMaterial,frecuenciaJuego,frecuenciaIncorrecta) VALUES (NULL,:idUsuario,:idMaterial,:frecuenciaJuego,:frecuenciaIncorrecta)";
+              $stmt = $conn->prepare($sql);
+              $stmt->bindParam(':idUsuario', $idUsuario);
+              $stmt->bindParam(':idMaterial', $material["id"]);
+              $frecuencias=0;
+              $stmt->bindParam(':frecuenciaJuego', $frecuencias);
+              $stmt->bindParam(':frecuenciaIncorrecta', $frecuencias);
+              $stmt->execute(); 
+            }
+          }
     } else {
-      $message = 'Sorry there must have been an issue creating your account';
-    }
+      $message = 'No se pudo agregar la cuenta';
 
-     $records = $conn->prepare('SELECT id FROM usuarios WHERE correo = :correo');
-    $records->bindParam(':correo', $_POST['correo']);
-    $records->execute();
-    $results = $records->fetch(PDO::FETCH_ASSOC);
-    if (!empty($results)) {
-      $idUsuario=$results['id'];
+      $records = $conn->prepare('SELECT correo, contrasena FROM usuarios WHERE correo = :correo');
+      $records->bindParam(':correo', $_POST['correo']);
+      $records->execute();
+      $results = $records->fetch(PDO::FETCH_ASSOC);
 
+      $user = null;
 
-      $sql = "INSERT INTO puntajes (id,idUsuario,puntajeMax) VALUES (NULL,:idUsuario, :puntajeMax)";
-      $stmt = $conn->prepare($sql);
-      $stmt->bindParam(':idUsuario', $idUsuario);
-      $puntajeMax=0;
-      $stmt->bindParam(':puntajeMax', $puntajeMax);
-      $stmt->execute();
-
-
-
-      $qs = $conn->prepare('SELECT id FROM material');
-      $qs->execute();
-      $materiales = $qs;
-      foreach($materiales as $material){
-        $sql = "INSERT INTO rendimiento (id,idUsuario,idMaterial,frecuenciaJuego,frecuenciaIncorrecta) VALUES (NULL,:idUsuario,:idMaterial,:frecuenciaJuego,:frecuenciaIncorrecta)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':idUsuario', $idUsuario);
-        $stmt->bindParam(':idMaterial', $material["id"]);
-        $frecuencias=0;
-        $stmt->bindParam(':frecuenciaJuego', $frecuencias);
-        $stmt->bindParam(':frecuenciaIncorrecta', $frecuencias);
-        $stmt->execute(); 
+      if (count($results) > 0) {
+        $message=$message .' porque el correo ya esta usado';
       }
+
     }
   }
 ?>

@@ -14,8 +14,6 @@
     if (count($results) > 0) {
       $user = $results;
     }
-  }else{
-    header('Location: /reciclaje-main');
   }
 ?>
 
@@ -36,7 +34,7 @@
 <body onkeydown="move(event)">
 
  
-
+    <?php if (isset($_SESSION['user_id'])): ?>
     <div id="contenedor">
         <a class="navbar-brand" href="index.php" name="inicio"><img class="logo" src="./img/logobeta1.png" alt="logo de la pagina" width="300px"></a>
         <!-- Puntaje del jugador, perdera puntos si el elemento a poner en contenedor choca con los elementos flotantes -->
@@ -107,5 +105,8 @@
     </script>
     <script src="./js/funciones.js"></script>
     <script src="./js/juego.js"></script>
+    <?php else:?>
+    <p>Inicia sesión primero</p>
+    <?php endif; ?>  
 </body>
 </html>

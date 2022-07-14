@@ -6,7 +6,7 @@
   require 'conexion.php';
 
   if (!empty($_POST['correo']) && !empty($_POST['contrasena'])) {
-    $records = $conn->prepare('SELECT correo, contrasena FROM usuarios WHERE correo = :correo');
+    $records = $conn->prepare('SELECT * FROM usuarios WHERE correo = :correo');
     $records->bindParam(':correo', $_POST['correo']);
     $records->execute();
     $results = $records->fetch(PDO::FETCH_ASSOC);
@@ -20,7 +20,7 @@
     }
   }
  if (isset($_SESSION['user_id'])) {
-    $records = $conn->prepare('SELECT correo, contrasena FROM usuarios WHERE correo = :correo');
+    $records = $conn->prepare('SELECT * FROM usuarios WHERE correo = :correo');
     $records->bindParam(':correo', $_SESSION['user_id']);
     $records->execute();
     $results = $records->fetch(PDO::FETCH_ASSOC);
@@ -76,9 +76,11 @@
             <li class="nav-item">
               <a class="nav-link" href="informacion.php">Información</a>
             </li>
+             <?php if (!isset($_SESSION['user_id'])): ?>
             <li class="nav-item">
               <a class="nav-link" href="registrar.php">Registrate</a>
             </li>
+            <?php endif; ?>   
             <li class="nav-item">
               <a class="nav-link" href="historial.php">Historial</a>
             </li>
@@ -131,25 +133,25 @@
 
         if (isset($_SESSION['user_id'])) {
   
-          $qs = $conn->prepare('SELECT * FROM (rendimiento as re INNER JOIN material as ma ON re.nombreMaterial =ma.nombreMaterial), contenedores c WHERE c.contenedor=ma.contenedor and re.correo=:correo');
-          $qs->bindParam(':correo', $_SESSION['user_id']);
+          $qs = $conn->prepare('SELECT *,ma.nombre as nombreMaterial,ma.imagen as imagenResiduo FROM (rendimiento as re INNER JOIN material as ma ON re.idMaterial =ma.id), contenedores c WHERE c.id=ma.idContenedor and re.idUsuario=:idUsuario');
+          $qs->bindParam(':idUsuario', $user['id']);
           $qs->execute();
           $materiales = $qs;
           foreach($materiales as $material){
             if($material['frecuenciaJuego']!=0)
             {
             echo '<tr>
-            <th scope="row"><img src="'.$material["imagen"].'" width="50" alt=""></th>
+            <th scope="row"><img src="'.$material["imagenResiduo"].'" width="50" alt=""></th>
             <td>'.$material["nombreMaterial"].'</td>
-           <td scope="row"><img src="'.$material["imagenContenedor"].'" width="50" alt=""></td>
+           <td scope="row"><img src="'.$material["imagen"].'" width="50" alt=""></td>
             <td>'.round((($material['frecuenciaIncorrecta']/$material['frecuenciaJuego'])*100),2).'%</td>
             </tr>  ';
           }
           else{
             echo '<tr>
-          <th scope="row"><img src="'.$material["imagen"].'" width="50" alt=""></th>
+          <th scope="row"><img src="'.$material["imagenResiduo"].'" width="50" alt=""></th>
           <td>'.$material["nombreMaterial"].'</td>
-          <td scope="row"><img src="'.$material["imagenContenedor"].'" width="50" alt=""></td>
+          <td scope="row"><img src="'.$material["imagen"].'" width="50" alt=""></td>
           <td>'.(0).'%</td>
           </tr>  ';
           }
@@ -184,8 +186,8 @@
 
 
         if (isset($_SESSION['user_id'])) {
-          $qs = $conn->prepare('SELECT *, (re.frecuenciaIncorrecta/re.frecuenciaJuego) p FROM (rendimiento as re INNER JOIN material as ma ON re.nombreMaterial =ma.nombreMaterial), contenedores c WHERE c.contenedor=ma.contenedor and re.correo=:correo ORDER BY p DESC LIMIT 4');
-          $qs->bindParam(':correo', $_SESSION['user_id']);
+          $qs = $conn->prepare('SELECT *, (re.frecuenciaIncorrecta/re.frecuenciaJuego) p, ma.nombre as nombreMaterial,ma.imagen as imagenResiduo FROM (rendimiento as re INNER JOIN material as ma ON re.idMaterial =ma.id), contenedores c WHERE c.id=ma.idContenedor and re.idUsuario=:idUsuario ORDER BY p DESC LIMIT 4');
+          $qs->bindParam(':idUsuario', $user['id']);
    
           $qs->execute();
           $materiales = $qs;
@@ -195,9 +197,9 @@
           if($material['frecuenciaJuego']!=0)
           {
           echo '<tr>
-          <th scope="row"><img src="'.$material["imagen"].'" width="50" alt=""></th>
+          <th scope="row"><img src="'.$material["imagenResiduo"].'" width="50" alt=""></th>
           <td>'.$material["nombreMaterial"].'</td>
-          <td scope="row"><img src="'.$material["imagenContenedor"].'" width="50" alt=""></td>
+          <td scope="row"><img src="'.$material["imagen"].'" width="50" alt=""></td>
           <td>'.round((($material['frecuenciaIncorrecta']/$material['frecuenciaJuego'])*100),2).'%</td>
           </tr>  ';
 
@@ -205,9 +207,9 @@
           }
           else{
             echo '<tr>
-          <th scope="row"><img src="'.$material["imagen"].'" width="50" alt=""></th>
+          <th scope="row"><img src="'.$material["imagenResiduo"].'" width="50" alt=""></th>
           <td>'.$material["nombreMaterial"].'</td>
-          <td scope="row"><img src="'.$material["imagenContenedor"].'" width="50" alt=""></td>
+          <td scope="row"><img src="'.$material["imagen"].'" width="50" alt=""></td>
           <td>'.(0).'%</td>
           </tr>  ';
           }

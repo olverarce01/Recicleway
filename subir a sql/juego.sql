@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-07-2022 a las 17:11:44
+-- Tiempo de generación: 14-07-2022 a las 20:08:05
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -30,23 +30,24 @@ SET time_zone = "+00:00";
 CREATE TABLE `contenedores` (
   `id` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
-  `imagen` varchar(50) NOT NULL
+  `imagen` varchar(50) NOT NULL,
+  `descripcion` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `contenedores`
 --
 
-INSERT INTO `contenedores` (`id`, `nombre`, `imagen`) VALUES
-(1, 'amarillo', './img/contenedor amarillo.png'),
-(2, 'azul', './img/contenedor azul.png'),
-(3, 'cafe', './img/contenedor cafe.png'),
-(4, 'cafe claro', './img/contenedor cafe claro.png'),
-(5, 'gris claro', './img/contenedor gris claro.png'),
-(6, 'gris oscuro', './img/contenedor gris oscuro.png'),
-(7, 'purpura', './img/contenedor purpura.png'),
-(8, 'rojo', './img/contenedor rojo.png'),
-(9, 'verde', './img/contenedor verde.png');
+INSERT INTO `contenedores` (`id`, `nombre`, `imagen`, `descripcion`) VALUES
+(1, 'Contenedor Amarillo (plásticos)', './img/contenedor amarillo.png', 'Todo tipo de envases y productos fabricados con plásticos como botellas, envases de alimentación o bolsas. Las botellas y envases de alimentos deben ser enjuagados y entregados secos.'),
+(2, 'Contenedor Azul (papel y cartón)', './img/contenedor azul.png', 'Se deposita todo tipo de papeles y cartones, como cajas o envases de alimentos. Periódicos, revistas, papeles de envolver o folletos publicitarios entre otros. Es recomendable plegar correctamente las cajas y envases para almacenar la más residuos.'),
+(3, 'Contenedor Cafe oscuro (Desechos orgánicos)', './img/contenedor cafe.png', 'Se depositan restos de alimentos como pieles de frutas, espinas de pescado, plantas, cáscaras de huevo o posos; o servilletas y papel de cocina usados. No depositar objetos de cerámica, pañales, colillas, chicles, toallitas húmedas, arena para mascotas, pelo, etc.'),
+(4, 'Contenedor Beige (Cartón para bebidas)', './img/contenedor cafe claro.png', 'Se depositan todos los envases de cartón (treta pack) que contienen refrescos, leches, bebidas alcohólicas y alimentos.'),
+(5, 'Contenedor gris claro (Metales)', './img/contenedor gris claro.png', 'Se depositan latas de conservas y de refrescos. Deben ser enjuagados y secados para su depósito.'),
+(6, 'Contenedor gris oscuro (Restos de residuos', './img/contenedor gris oscuro.png', 'Se depositan los residuos que no pueden ser reciclados o que el mercado aún no está establecido.'),
+(7, 'Contenedor Burdeo (Aparatos eléctricos', './img/contenedor purpura.png', 'Se depositan electrodomésticos voluminosos, audio y video, computación y electrodomésticos pequeños.'),
+(8, 'Contenedor Rojo (Desechos peligrosos)', './img/contenedor rojo.png', 'Son considerados para almacenar residuos peligrosos como baterías, pilas, aceites o medicamentos.'),
+(9, 'Contenedor Verde (vidrio)', './img/contenedor verde.png', 'Se depositan envases de vidrio, como botellas de bebidas alcohólicas, refresco y agua. No usar para cerámica o cristal.');
 
 -- --------------------------------------------------------
 
@@ -126,7 +127,7 @@ CREATE TABLE `puntajes` (
 --
 
 INSERT INTO `puntajes` (`id`, `idUsuario`, `puntajeMax`) VALUES
-(1, 1, 31);
+(16, 18, 0);
 
 -- --------------------------------------------------------
 
@@ -147,48 +148,48 @@ CREATE TABLE `rendimiento` (
 --
 
 INSERT INTO `rendimiento` (`id`, `idUsuario`, `idMaterial`, `frecuenciaJuego`, `frecuenciaIncorrecta`) VALUES
-(171, 1, 1, 0, 0),
-(172, 1, 2, 0, 0),
-(173, 1, 3, 1, 0),
-(174, 1, 4, 0, 0),
-(175, 1, 5, 1, 0),
-(176, 1, 6, 1, 0),
-(177, 1, 7, 1, 0),
-(178, 1, 8, 1, 0),
-(179, 1, 9, 4, 0),
-(180, 1, 10, 1, 0),
-(181, 1, 11, 0, 0),
-(182, 1, 12, 2, 0),
-(183, 1, 13, 1, 0),
-(184, 1, 14, 2, 0),
-(185, 1, 15, 1, 0),
-(186, 1, 16, 2, 0),
-(187, 1, 17, 1, 0),
-(188, 1, 18, 1, 0),
-(189, 1, 19, 1, 0),
-(190, 1, 20, 0, 0),
-(191, 1, 21, 0, 0),
-(192, 1, 22, 3, 0),
-(193, 1, 23, 1, 0),
-(194, 1, 24, 1, 0),
-(195, 1, 25, 2, 0),
-(196, 1, 26, 0, 0),
-(197, 1, 27, 0, 0),
-(198, 1, 28, 3, 0),
-(199, 1, 29, 0, 0),
-(200, 1, 30, 1, 1),
-(201, 1, 31, 2, 0),
-(202, 1, 32, 2, 0),
-(203, 1, 33, 1, 0),
-(204, 1, 34, 3, 0),
-(205, 1, 35, 0, 0),
-(206, 1, 36, 2, 0),
-(207, 1, 37, 1, 0),
-(208, 1, 38, 1, 0),
-(209, 1, 39, 0, 0),
-(210, 1, 40, 3, 0),
-(211, 1, 41, 1, 0),
-(212, 1, 42, 1, 0);
+(801, 18, 1, 0, 0),
+(802, 18, 2, 0, 0),
+(803, 18, 3, 0, 0),
+(804, 18, 4, 0, 0),
+(805, 18, 5, 0, 0),
+(806, 18, 6, 0, 0),
+(807, 18, 7, 0, 0),
+(808, 18, 8, 0, 0),
+(809, 18, 9, 0, 0),
+(810, 18, 10, 0, 0),
+(811, 18, 11, 0, 0),
+(812, 18, 12, 0, 0),
+(813, 18, 13, 0, 0),
+(814, 18, 14, 0, 0),
+(815, 18, 15, 0, 0),
+(816, 18, 16, 0, 0),
+(817, 18, 17, 0, 0),
+(818, 18, 18, 0, 0),
+(819, 18, 19, 0, 0),
+(820, 18, 20, 0, 0),
+(821, 18, 21, 0, 0),
+(822, 18, 22, 0, 0),
+(823, 18, 23, 0, 0),
+(824, 18, 24, 0, 0),
+(825, 18, 25, 0, 0),
+(826, 18, 26, 0, 0),
+(827, 18, 27, 0, 0),
+(828, 18, 28, 0, 0),
+(829, 18, 29, 0, 0),
+(830, 18, 30, 0, 0),
+(831, 18, 31, 0, 0),
+(832, 18, 32, 0, 0),
+(833, 18, 33, 0, 0),
+(834, 18, 34, 0, 0),
+(835, 18, 35, 0, 0),
+(836, 18, 36, 0, 0),
+(837, 18, 37, 0, 0),
+(838, 18, 38, 0, 0),
+(839, 18, 39, 0, 0),
+(840, 18, 40, 0, 0),
+(841, 18, 41, 0, 0),
+(842, 18, 42, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -201,7 +202,7 @@ CREATE TABLE `usuarios` (
   `nombre` varchar(50) NOT NULL,
   `apellido` varchar(50) NOT NULL,
   `correo` varchar(50) NOT NULL,
-  `contrasena` varchar(50) NOT NULL
+  `contrasena` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -209,7 +210,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `correo`, `contrasena`) VALUES
-(1, 'olver', 'arce', 'olver@arce', '123456');
+(18, 'ejemplo', 'ejemplo', 'ejemplo@ejemplo', '$2y$10$eAo5T7mtMDMmqq1zYaInnOHSG2KBeQEsAuHc26oM7ETi7HEMMKsie');
 
 --
 -- Índices para tablas volcadas
@@ -246,7 +247,8 @@ ALTER TABLE `rendimiento`
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `correo` (`correo`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -268,23 +270,29 @@ ALTER TABLE `material`
 -- AUTO_INCREMENT de la tabla `puntajes`
 --
 ALTER TABLE `puntajes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `rendimiento`
 --
 ALTER TABLE `rendimiento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=843;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `material`
+--
+ALTER TABLE `material`
+  ADD CONSTRAINT `material_ibfk_1` FOREIGN KEY (`contenedor`) REFERENCES `contenedores` (`contenedor`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `puntajes`
